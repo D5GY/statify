@@ -1,0 +1,1 @@
+require('./Core/statify').start();

@@ -1,0 +1,25 @@
+{
+  "name": "statify",
+  "version": "2.0.0",
+  "description": "statify multiple game stats lookup discord bot & website",
+  "main": "src/index.js",
+  "scripts": {
+    "website": "cd src/Website && node index.js",
+    "bot": "cd src/Bot && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/D5GY/statify.git"
+  },
+  "author": "Jinx.#0001 & zepqu#0888",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/D5GY/statify/issues"
+  },
+  "homepage": "https://github.com/D5GY/statify#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "discord.js": "^14.7.0",
+    "express": "^4.18.2"
+  }
+}
