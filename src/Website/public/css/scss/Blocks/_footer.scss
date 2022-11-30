@@ -1,0 +1,30 @@
+
+#footer {
+  transition: background-color 0.2s ease;
+  border-top: solid 2px $blue;
+  padding: 0px 0px;
+  .col-lg-4 {
+    display: flex;
+    align-items: center;
+    flex-basis: auto;
+    flex-grow: 1;
+    width: 100%;
+    margin: auto;
+
+    .footer-text {
+      margin-left: 1%;
+
+      p {
+        margin-top: 15px;
+      }
+    }
+
+    .footer-items {
+      margin-left: auto;
+
+      i:hover {
+        color: $blue;
+      }
+    }
+  }
+}

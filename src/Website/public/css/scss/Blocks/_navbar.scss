@@ -1,0 +1,99 @@
+#mainNav {
+  background-color: $background;
+  transition: background-color 0.2s ease;
+  border-bottom: solid 2px $blue;
+
+  .navbar-toggler {
+    color: $blue;
+    border: solid 2px $blue;
+    .navbar-toggler-icon { 
+      color: $blue;
+    }
+  }
+  .navbar-nav {
+    margin-right: auto;
+  }
+  
+  .navbar-collapse {
+    margin-top: 5px;
+    .navbar-nav .nav-item .nav-link {
+      color: $fontColor;
+      &:hover { 
+        color: $blue;
+      }
+    }
+  }
+
+  .navbar-nav .nav-item {
+    .navlink {
+      color: $fontColor;
+      font-weight: 600;
+      padding: 0.6rem 0;
+
+      &:active {
+        color: $blue;
+      }
+    }
+  }
+
+  .btn {
+    border: none;
+    width: 105px;
+    height: 37px;
+    background-color: $blue;
+    color: $fontColor;
+    &:hover {
+      color: $blueDark;
+    }
+    .icon {
+      color: $fontColor;
+      background: inherit;
+      float: left;
+      margin-top: 5px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #mainNav {
+    border-bottom: solid 2px $blue;
+    background-color: $background;
+
+    .navbar-nav .nav-item {
+      .nav-link {
+        color: $fontColor;
+        padding: 0 1rem;
+
+        i {
+          margin-right: 6px;
+        }
+
+        &:hover {
+          color: $blue;
+        }
+      }
+
+      .btn .icon {
+        color: $fontColor;
+        background: $blue;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+    .navbar-shrink {
+      border-bottom: solid 2px $blue;
+      background-color: $background;
+
+      .navbar-nav .nav-item .nav-link {
+        color: $fontColor;
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}

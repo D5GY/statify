@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+</head>
+
+<body>
+
+  <%- include('./Blocks/navbar', user) %>
+
+    <section id="home">
+      <div class="home-content">
+        <div class="container">
+          <div class="media-box">
+            <div class="text-header">
+              <h1>statify</h1>
+            </div>
+            <div class="text-under">
+              <p>statify is a custom coded discord bot that brings you game stat lookups.</p>
+              <p>To add statify to your discord server click on the "Add To Server" button.</p>
+            </div>
+            <div class="buttons">
+              <button onclick="location.href='/invite'" class="btn btn-lg">Add To Server <i class="fa-solid fa-robot"></i></button>
+              <button onclick="location.href='/discord'" class="btn btn-lg">Discord <i class="fa-brands fa-discord"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('./Blocks/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/statify.js"></script>
+</body>
+
+</html>

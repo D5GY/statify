@@ -1,0 +1,93 @@
+.container {
+  width: 100%;
+  position: relative;
+
+  margin: {
+    left: auto;
+    right: auto;
+  }
+
+  padding: {
+    left: 15px;
+    right: 15px;
+  }
+}
+
+#home {
+  height: 910px;
+
+  .media-box {
+    height: 500px;
+    width: 700px;
+    background-color: $border-color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    .text-header {
+      position: absolute;
+      font-size: 25px;
+      top: 17.5%;
+      left: 50%;
+      transform: translate(-50%);
+      text-align: center;
+      background: $border-color;
+      font-weight: 600;
+
+      h1 {
+        background-color: $border-color;
+        letter-spacing: 4px;
+        font-size: 65px;
+        text-decoration: underline 3px $blue;
+      }
+    }
+
+    .text-under {
+      position: absolute;
+      top: 40%;
+      left: 15%;
+      right: 15%;
+      text-align: center;
+      background: $border-color;
+
+      p {
+        background-color: $border-color;
+        margin-top: 25px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+
+    .buttons .btn {
+      text-decoration: none;
+      text-align: center;
+      height: 50px;
+      width: 185px;
+      border-radius: 5px;
+      color: $blueDark;
+      background-color: $blue;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 500;
+      position: relative;
+      top: 400px;
+      left: 24%;
+
+      &:hover {
+        box-shadow: 0 0px 16px 0 $blueDark;
+      }
+
+      i {
+        color: $blueDark;
+        background: transparent;
+      }
+
+      a {
+        border: none;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}
