@@ -19,6 +19,7 @@
   "homepage": "https://github.com/D5GY/statify#readme",
   "dependencies": {
     "chalk": "^4.1.2",
+    "crypto": "^1.0.1",
     "discord.js": "^14.7.0",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
