@@ -5,7 +5,7 @@ const { BaseInteraction } = require('discord.js');
  */
 module.exports = async (interaction) => {
   const statify = interaction.client;
-  if (statify.config.DEVELOPMENT_MODE && !statify.config.BOT.STATIFY_DEVELOPERS_ID.includes(interaction.user.id)) return await interaction.reply({
+  if (statify.config.DEVELOPMENT_MODE && !statify.config.STATIFY_DEVELOPERS_ID.includes(interaction.user.id)) return await interaction.reply({
     ephemeral: true,
     content: 'This bot is in developer only mode!'
   });
