@@ -13,9 +13,9 @@
               <li class="nav-item"><a class="nav-link" href="/vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a></li>
           </ul>
           <% if(user) { %>
-              <a href="javascript:void" class="nav-item btn btn-xl">Logout <i class="fa-solid fa-person-walking-arrow-right" style="background-color: inherit;"></i></a>
+              <a href="/logout" class="nav-item btn btn-xl">Logout <i class="fa-solid fa-person-walking-arrow-right" style="background-color: inherit;"></i></a>
           <% } else { %>
-          <a href="javascript:void" class="nav-item btn btn-xl">Login <i class="fa-brands fa-discord icon"></i></a>
+          <a href="/login" class="nav-item btn btn-xl">Login <i class="fa-brands fa-discord icon"></i></a>
           <% } %>
       </div>
   </div>
