@@ -17,6 +17,22 @@ class statify extends Client {
       ]
     });
 
+
+    this.Colors = {
+      BLUE: "#417bd2",
+      RED: "f8002e",
+      YELLOW: "faff14",
+      GREEN: "00f821"  
+    }
+    this.Emojis = {
+        ICON_BLUE: '<:statify_logo_icon:1046841072824881193>',
+        ICON_GREEN: '<:Statify_logo_icon_green:1047967763873931265>',
+        ICON_RED: '<:Statify_logo_icon_red:1047967765413253181>',
+        ICON_WHITE: '<:Statify_logo_icon_white:1047968756737003560>',
+        ICON_BLACK: '<:Statify_logo_icon_black:1047968755071860856>',
+        ICON_YELLOW: '<:Statify_logo_icon_yellow:1047968758322434058>'
+    }
+
     this.config = Config;
     this.logger = Logger;
     this.response = {
