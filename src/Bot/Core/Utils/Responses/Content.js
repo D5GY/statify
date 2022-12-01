@@ -1,3 +1,10 @@
+const statify = require('../../statify');
 module.exports = {
-  DEFAULT_ERROR: (action) => `Something went wrong executing this ${action}.\nWe have logged the error and will be fixed shortly.`
+  /**
+   * 
+   * @param { string } action 
+   * @param { statify } statify 
+   * @returns string
+   */
+  DEFAULT_ERROR: (action, statify) => `${statify.Emojis.ICON_RED} An unexpected error occurred within a ${action}, We will look into this!`
 }
