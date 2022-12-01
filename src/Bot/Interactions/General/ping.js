@@ -11,10 +11,10 @@ module.exports = {
    */
   async execute(interaction, statify) {
     await interaction.deferReply({
-      ephemeral: true
+      ephemeral: false
     });
     await interaction.editReply({
-      content: statify.ws.ping.toString()
+      embeds: [statify.response.embed.ping(statify)]
     });
   }
 }
