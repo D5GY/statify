@@ -49,6 +49,10 @@ app.get('/vote', (req, res) => {
   res.redirect(WEBSITE.URLs.TOP_GG);
 });
 
+app.get('/github', (req, res) => {
+  res.redirect(WEBSITE.URLs.GITHUB);
+});
+
 // Start Website
 app.listen(WEBSITE.PORT, ()=> {
   Logger.GREEN('website', `online on port ${WEBSITE.PORT}`);
