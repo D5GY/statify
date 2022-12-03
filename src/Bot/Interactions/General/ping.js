@@ -10,11 +10,12 @@ module.exports = {
    * @param { statify } statify 
    */
   async execute(interaction, statify) {
+    const clientPing = Date.now() - interaction.createdTimestamp;
     await interaction.deferReply({
       ephemeral: false
     });
     await interaction.editReply({
-      embeds: [statify.response.embed.ping(statify)]
+      embeds: [statify.response.embed.ping(statify, clientPing)]
     });
   }
 }

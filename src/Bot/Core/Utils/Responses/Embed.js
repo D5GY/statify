@@ -4,11 +4,11 @@ module.exports = {
   /**
    * @param { statify } statify
    */
-  ping: (statify) => {
+  ping: (statify, ClientPing) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
       .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setDescription(`${statify.Emojis.ICON_GREEN} My API ping is ${statify.ws.ping}`);
+      .setDescription(`${statify.Emojis.ICON_GREEN} My API ping is ${statify.ws.ping}\n${statify.Emojis.ICON_GREEN} My Client ping is ${ClientPing}`);
   },
   /**
    * @param { R6_General } data 
