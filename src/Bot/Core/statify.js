@@ -54,7 +54,7 @@ class statify extends Client {
       delete require.cache[require.resolve(`${eventDir}/${event}`)];
       this.eventsCount++;
     }
-    this.logger.BLUE('bot', `Loaded ${this.eventsCount} ${this.eventsCount = 1 ? 'event' : 'events'}`);
+    this.logger.BLUE('bot', `Loaded ${this.eventsCount} ${this.eventsCount == 1 ? 'event' : 'events'}`);
   }
   loadInteractions() {
     const interactionDir = `${__dirname}/../Interactions`;
@@ -68,7 +68,7 @@ class statify extends Client {
         this.interactionCount++;
       }
     }
-    this.logger.BLUE('bot', `Loaded ${this.interactionCount} ${this.interactionCount = 1 ? 'interaction' : 'interactions'}`);
+    this.logger.BLUE('bot', `Loaded ${this.interactionCount} ${this.interactionCount == 1 ? 'interaction' : 'interactions'}`);
   }
   start() {
     this.loadEvents();
