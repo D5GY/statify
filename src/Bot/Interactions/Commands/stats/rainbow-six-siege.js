@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, CommandInteraction, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
-const statify = require('../../Core/statify');
+const statify = require('../../../Core/statify');
 const r6 = require('r6s-stats-api');
 
 const buttons = new ActionRowBuilder().addComponents(

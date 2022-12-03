@@ -22,15 +22,15 @@ class statify extends Client {
       BLUE: "#417bd2",
       RED: "f8002e",
       YELLOW: "faff14",
-      GREEN: "00f821"  
+      GREEN: "00f821"
     }
     this.Emojis = {
-        ICON_BLUE: '<:statify_logo_icon:1046841072824881193>',
-        ICON_GREEN: '<:Statify_logo_icon_green:1047967763873931265>',
-        ICON_RED: '<:Statify_logo_icon_red:1047967765413253181>',
-        ICON_WHITE: '<:Statify_logo_icon_white:1047968756737003560>',
-        ICON_BLACK: '<:Statify_logo_icon_black:1047968755071860856>',
-        ICON_YELLOW: '<:Statify_logo_icon_yellow:1047968758322434058>'
+      ICON_BLUE: '<:statify_logo_icon:1046841072824881193>',
+      ICON_GREEN: '<:Statify_logo_icon_green:1047967763873931265>',
+      ICON_RED: '<:Statify_logo_icon_red:1047967765413253181>',
+      ICON_WHITE: '<:Statify_logo_icon_white:1047968756737003560>',
+      ICON_BLACK: '<:Statify_logo_icon_black:1047968755071860856>',
+      ICON_YELLOW: '<:Statify_logo_icon_yellow:1047968758322434058>'
     }
 
     this.config = Config;
@@ -41,9 +41,9 @@ class statify extends Client {
     }
 
     this.eventsCount = 0;
-    this.interactions = new Collection();
-    this.interactionsData = [];
-    this.interactionCount = 0;
+    this.commands = new Collection();
+    this.commandsData = [];
+    this.commandsCount = 0;
   }
   loadEvents() {
     const eventDir = `${__dirname}/../Events`;
@@ -58,17 +58,22 @@ class statify extends Client {
   }
   loadInteractions() {
     const interactionDir = `${__dirname}/../Interactions`;
-    const interactionsFolders = readdirSync(interactionDir);
-    for (const folder of interactionsFolders) {
-      const interactionsFiles = readdirSync(`${interactionDir}/${folder}`);
-      for (const interactionFile of interactionsFiles) {
-        const interaction = require(`${interactionDir}/${folder}/${interactionFile}`);
-        this.interactions.set(interaction.data.name, interaction);
-        this.interactionsData.push(interaction.data.toJSON());
-        this.interactionCount++;
+    const interactionTypes = readdirSync(interactionDir);
+    for (let interactionType of interactionTypes) {
+      if (interactionType == 'Commands') {
+        const commandsFolder = readdirSync(`${interactionDir}/${interactionType}`);
+        for (const commandFolder of commandsFolder) {
+          const commandFiles = readdirSync(`${interactionDir}/${interactionType}/${commandFolder}`);
+          for (const commandFile of commandFiles) {
+            const command = require(`${interactionDir}/${interactionType}/${commandFolder}/${commandFile}`);
+            this.commands.set(command.data.name, command);
+            this.commandsData.push(command.data.toJSON());
+            this.commandsCount++;
+          }
+        }
       }
     }
-    this.logger.BLUE('bot', `Loaded ${this.interactionCount} ${this.interactionCount == 1 ? 'interaction' : 'interactions'}`);
+    this.logger.BLUE('bot', `Loaded ${this.commandsCount} ${this.commandsCount == 1 ? 'command' : 'commands'}`);
   }
   start() {
     this.loadEvents();

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, CommandInteraction } = require("discord.js");
-const statify = require('../../Core/statify');
+const statify = require('../../../Core/statify');
 
 module.exports = {
   data: new SlashCommandBuilder()

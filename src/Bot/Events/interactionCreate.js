@@ -11,7 +11,7 @@ module.exports = async (interaction) => {
   });
 
   if (interaction.isChatInputCommand()) {
-    const interactionExecuted = await statify.interactions.get(interaction.commandName);
+    const interactionExecuted = await statify.commands.get(interaction.commandName);
     if (!interactionExecuted) {
       statify.logger.YELLOW('bot', `INTERACTION: could not get ${interaction.commandName}\n${interaction}`);
       return await interaction.reply({
