@@ -44,6 +44,8 @@ class statify extends Client {
     this.commands = new Collection();
     this.commandsData = [];
     this.commandsCount = 0;
+    this.selectMenus = new Collection();
+    this.selectMenusCount = 0;
   }
   loadEvents() {
     const eventDir = `${__dirname}/../Events`;
@@ -71,9 +73,17 @@ class statify extends Client {
             this.commandsCount++;
           }
         }
+      } else if (interactionType == 'SelectMenus') {
+        const SelectMenuFiles = readdirSync(`${interactionDir}/${interactionType}`);
+        for (const SelectMenuFile of SelectMenuFiles) {
+          const selectmenu = require(`${interactionDir}/${interactionType}/${SelectMenuFile}`);
+          this.selectMenus.set(selectmenu.data.name, selectmenu);
+          this.selectMenusCount++;
+        }
       }
     }
     this.logger.BLUE('bot', `Loaded ${this.commandsCount} ${this.commandsCount == 1 ? 'command' : 'commands'}`);
+    this.logger.BLUE('bot', `Loaded ${this.selectMenusCount} ${this.selectMenusCount == 1 ? 'select menu' : 'select menus'}`);
   }
   start() {
     this.loadEvents();

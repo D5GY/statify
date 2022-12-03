@@ -16,7 +16,7 @@ module.exports = async (interaction) => {
       statify.logger.YELLOW('bot', `INTERACTION: could not get ${interaction.commandName}\n${interaction}`);
       return await interaction.reply({
         ephemeral: true,
-        content: 'statify error: could not get interaction.'
+        content: `${statify.Emojis.ICON_RED} statify error: could not get interaction.`
       });
     }
     try {
@@ -33,6 +33,24 @@ module.exports = async (interaction) => {
           content: statify.response.content.DEFAULT_ERROR('interaction')
         });
       }
+    }
+  } else if (interaction.isStringSelectMenu()) {
+    const menu = statify.selectMenus.get(interaction.customId);
+    if (!menu) {
+      await interaction.reply({
+        ephemeral: true,
+        content: `${statify.Emojis.ICON_RED} statify error: could not get select menu.`
+      });
+      return statify.logger.RED('bot', menu);
+    }
+    try {
+      await menu.execute(interaction, statify);
+    } catch (error) {
+      await interaction.reply({
+        ephemeral: true,
+        content: `${statify.Emojis.ICON_RED} statify error: select menu.`
+      });
+      return statify.logger.RED('bot', error);
     }
   }
 }
