@@ -25,12 +25,12 @@ module.exports = async (interaction) => {
       statify.logger.RED('bot', `INTERACTION: failed to execute ${interactionExecuted}\n${error}`);
       if (interaction.deferred || interaction.replied) {
         interaction.editReply({
-          content: statify.response.content.DEFAULT_ERROR('interaction')
+          content: statify.response.content.DEFAULT_ERROR('interaction', statify)
         });
       } else {
         interaction.reply({
           ephemeral: true,
-          content: statify.response.content.DEFAULT_ERROR('interaction')
+          content: statify.response.content.DEFAULT_ERROR('interaction', statify)
         });
       }
     }
@@ -39,16 +39,20 @@ module.exports = async (interaction) => {
     if (!menu) {
       await interaction.reply({
         ephemeral: true,
-        content: `${statify.Emojis.ICON_RED} statify error: could not get select menu.`
+        content: statify.response.content.DEFAULT_ERROR('select menu', statify),
+        components: [],
+        embeds: []
       });
       return statify.logger.RED('bot', menu);
     }
     try {
       await menu.execute(interaction, statify);
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         ephemeral: true,
-        content: `${statify.Emojis.ICON_RED} statify error: select menu.`
+        content: statify.response.content.DEFAULT_ERROR('select menu', statify),
+        components: [],
+        embeds: []
       });
       return statify.logger.RED('bot', error);
     }
