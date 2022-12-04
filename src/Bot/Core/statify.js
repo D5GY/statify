@@ -41,7 +41,8 @@ class statify extends Client {
     }
 
     this.webhooks = {
-      suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN })
+      suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN }),
+      bugreport: new WebhookClient({ id: this.config.WEBHOOKS.BUGREPORT_SUBMIT.ID, token: this.config.WEBHOOKS.BUGREPORT_SUBMIT.TOKEN })
     }
 
     this.eventsCount = 0;

@@ -54,5 +54,16 @@ module.exports = {
         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
         { name: 'suggestion', value: `${suggestion}` }
       );
+  },
+  BUG_SUBMIT: (platform, bug, user, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.RED)
+      .setAuthor({ name: `new bug found`, url: 'https://statify.cc/', iconURL: user.avatarURL() ?? statify.user.avatarURL() })
+      .setFields(
+        { name: 'platform', value: `${platform}`, inline: true },
+        { name: 'User', value: `Tag: ${user.tag}\nID: ${user.id}\nUser: ${user}`, inline: true },
+        { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
+        { name: 'Bug', value: `${bug}` }
+      );
   }
 }
