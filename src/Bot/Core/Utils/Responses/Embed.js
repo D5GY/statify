@@ -36,34 +36,34 @@ module.exports = {
   HELP: {
     rainbow_six_siege: (statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setFields(
-        { name: 'Useage', value: '/rainbow-six-siege `username:` `platform:`' },
-        { name: 'Example', value: '/rainbow-six-siege `username: csgo` `platform: xbox`' }
-      )
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/rainbow-six-siege `username:` `platform:`' },
+          { name: 'Example', value: '/rainbow-six-siege `username: csgo` `platform: xbox`' }
+        )
     }
   },
   SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: `new suggestion`, url: 'https://statify.cc/', iconURL: user.avatarURL() ?? statify.user.avatarURL() })
+      .setAuthor({ name: `New Suggestion`, url: 'https://statify.cc/', iconURL: user.avatarURL() ?? statify.user.avatarURL() })
       .setFields(
-        { name: 'platform', value: `${platform}`, inline: true },
-        { name: 'User', value: `Tag: ${user.tag}\nID: ${user.id}\nUser: ${user}`, inline: true },
-        { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
-        { name: 'suggestion', value: `${suggestion}` }
+        { name: 'User Information', value: `Tag: ${user.tag}\nID: ${user.id}\nUser: ${user}`, inline: false },
+        { name: 'Suggestion', value: `${suggestion}`, inline: false },
+        { name: 'Platform', value: `${platform}`, inline: true },
+        { name: 'Time Submitted', value: `<t:${Math.floor(Date.now() / 1000)}:F> (<t:${Math.floor(Date.now() / 1000)}:R>)`, inline: true },
       );
   },
   BUG_SUBMIT: (platform, bug, user, statify) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.RED)
-      .setAuthor({ name: `new bug found`, url: 'https://statify.cc/', iconURL: user.avatarURL() ?? statify.user.avatarURL() })
+      .setAuthor({ name: `Bug Reported`, url: 'https://statify.cc/', iconURL: user.avatarURL() ?? statify.user.avatarURL() })
       .setFields(
-        { name: 'platform', value: `${platform}`, inline: true },
-        { name: 'User', value: `Tag: ${user.tag}\nID: ${user.id}\nUser: ${user}`, inline: true },
-        { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
-        { name: 'Bug', value: `${bug}` }
+        { name: 'User Information', value: `Tag: ${user.tag}\nID: ${user.id}\nUser: ${user}`, inline: false },
+        { name: 'Bug', value: `${bug}`, inline: false },
+        { name: 'Platform', value: `${platform}`, inline: true },
+        { name: 'Time Submitted', value: `<t:${Math.floor(Date.now() / 1000)}:F> (<t:${Math.floor(Date.now() / 1000)}:R>)`, inline: true },
       );
   }
 }
