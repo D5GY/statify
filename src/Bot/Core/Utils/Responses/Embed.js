@@ -43,5 +43,16 @@ module.exports = {
         { name: 'Example', value: '/rainbow-six-siege `username: csgo` `platform: xbox`' }
       )
     }
+  },
+  SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: `new suggestion`, url: 'https://statify.cc/', iconURL: user.avatarURL() ?? statify.user.avatarURL() })
+      .setFields(
+        { name: 'platform', value: `${platform}`, inline: true },
+        { name: 'User', value: `Tag: ${user.tag}\nID: ${user.id}\nUser: ${user}`, inline: true },
+        { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
+        { name: 'suggestion', value: `${suggestion}` }
+      );
   }
 }

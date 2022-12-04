@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Collection, WebhookClient } = require('discord.js');
 const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
@@ -38,6 +38,10 @@ class statify extends Client {
     this.response = {
       content: utils.content,
       embed: utils.embeds
+    }
+
+    this.webhooks = {
+      suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN })
     }
 
     this.eventsCount = 0;
