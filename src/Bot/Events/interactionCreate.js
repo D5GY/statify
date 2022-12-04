@@ -70,7 +70,7 @@ module.exports = async (interaction) => {
     try {
       await modal.execute(interaction, statify);
     } catch (error) {
-      await interaction.editReply({
+      await interaction.reply({
         ephemeral: true,
         content: statify.response.content.DEFAULT_ERROR('modal', statify),
         components: [],
