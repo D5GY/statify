@@ -46,6 +46,8 @@ class statify extends Client {
     this.commandsCount = 0;
     this.selectMenus = new Collection();
     this.selectMenusCount = 0;
+    this.modals = new Collection();
+    this.modalsCount = 0;
   }
   loadEvents() {
     const eventDir = `${__dirname}/../Events`;
@@ -80,10 +82,18 @@ class statify extends Client {
           this.selectMenus.set(selectmenu.data.name, selectmenu);
           this.selectMenusCount++;
         }
+      } else if (interactionType == 'Modals') {
+        const modalFiles = readdirSync(`${interactionDir}/${interactionType}`);
+        for (const modalFile of modalFiles) {
+          const modal = require(`${interactionDir}/${interactionType}/${modalFile}`);
+          this.modals.set(modal.data.name, modal);
+          this.modalsCount++;
+        }
       }
     }
     this.logger.BLUE('bot', `Loaded ${this.commandsCount} ${this.commandsCount == 1 ? 'command' : 'commands'}`);
     this.logger.BLUE('bot', `Loaded ${this.selectMenusCount} ${this.selectMenusCount == 1 ? 'select menu' : 'select menus'}`);
+    this.logger.BLUE('bot', `Loaded ${this.modalsCount} ${this.modalsCount == 1 ? 'modal' : 'modals'}`);
   }
   start() {
     this.loadEvents();

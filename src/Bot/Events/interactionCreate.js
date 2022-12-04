@@ -1,4 +1,4 @@
-const { BaseInteraction } = require('discord.js');
+const { BaseInteraction, InteractionType } = require('discord.js');
 /**
  * 
  * @param { BaseInteraction } interaction
@@ -51,6 +51,28 @@ module.exports = async (interaction) => {
       await interaction.editReply({
         ephemeral: true,
         content: statify.response.content.DEFAULT_ERROR('select menu', statify),
+        components: [],
+        embeds: []
+      });
+      return statify.logger.RED('bot', error);
+    }
+  } else if (interaction.type == InteractionType.ModalSubmit) {
+    const modal = statify.modals.get(interaction.customId);
+    if (!modal) {
+      await interaction.reply({
+        ephemeral: true,
+        content: statify.response.content.DEFAULT_ERROR('modal', statify),
+        components: [],
+        embeds: []
+      });
+      return statify.logger.RED('bot', modal);
+    }
+    try {
+      await modal.execute(interaction, statify);
+    } catch (error) {
+      await interaction.editReply({
+        ephemeral: true,
+        content: statify.response.content.DEFAULT_ERROR('modal', statify),
         components: [],
         embeds: []
       });
