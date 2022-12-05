@@ -26,6 +26,7 @@
     "express-session": "^1.17.3",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
-    "r6s-stats-api": "^1.2.0"
+    "r6s-stats-api": "^1.2.0",
+    "request": "^2.88.2"
   }
 }
