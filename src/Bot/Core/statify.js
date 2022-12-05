@@ -3,6 +3,7 @@ const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
 const utils = require('./Utils');
+const Utils = require('./Utils');
 
 class statify extends Client {
   constructor() {
@@ -39,6 +40,7 @@ class statify extends Client {
       content: utils.content,
       embed: utils.embeds
     }
+    this.requestAPI = new Utils.requestAPI(this.config.BOT.API_KEYS);
 
     this.webhooks = {
       suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN }),
