@@ -124,5 +124,41 @@ module.exports = {
         .setThumbnail(data.clan.badgeUrls.small)
         .setFooter({ text: 'Page 3 - Clan Stats' });
     }
+  },
+  APEX_LEGENDS: {
+    NOT_FOUND: (username, platform, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
+    },
+    STATS: (data, statify) => {
+      const apexStats = new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL });
+
+        const segment = data.data.segments[0];
+        
+        if (segment) {
+          if (segment.stats.level) apexStats.addFields({ name: 'Level', value: `${segment.stats.level.displayValue}`, inline: true });
+          if (segment.stats.kills) apexStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
+          if (segment.stats.killsPerMatch) apexStats.addFields({ name: 'Kills Per Match', value: `${segment.stats.killsPerMatch.displayValue}`, inline: true });
+          if (segment.stats.winningKills) apexStats.addFields({ name: 'Winning Kills', value: `${segment.stats.winningKills.displayValue}`, inline: true });
+          if (segment.stats.killsAsKillLeader) apexStats.addFields({ name: 'Kills As Kill Leader', value: `${segment.stats.killsAsKillLeader.displayValue}`, inline: true });
+          if (segment.stats.damage) apexStats.addFields({ name: 'Total Damage', value: `${segment.stats.damage.displayValue}`, inline: true });
+          if (segment.stats.points) apexStats.addFields({ name: 'Points', value: `${segment.stats.points.displayValue}`, inline: true });
+          if (segment.stats.assists) apexStats.addFields({ name: 'Assists', value: `${segment.stats.assists.displayValue}`, inline: true });
+          if (segment.stats.finishers) apexStats.addFields({ name: 'Finishers', value: `${segment.stats.finishers.displayValue}`, inline: true });
+          if (segment.stats.deaths) apexStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
+          if (segment.stats.damageDealt) apexStats.addFields({ name: 'Damage Dealt', value: `${segment.stats.damageDealt.displayValue}`, inline: true });
+          if (segment.stats.matchesPlayed) apexStats.addFields({ name: 'Matches Played', value: `${segment.stats.matchesPlayed.displayValue}`, inline: true });
+          if (segment.stats.timePlayed) apexStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
+        } else if (!segment) {
+          apexStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+        }
+
+      return apexStats;
+    }
   }
 }
