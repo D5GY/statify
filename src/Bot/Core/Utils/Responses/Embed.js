@@ -4,6 +4,12 @@ module.exports = {
   /**
    * @param { statify } statify
    */
+  ERROR: (error, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setDescription(error);
+  },
   ping: (statify, ClientPing) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
@@ -36,12 +42,12 @@ module.exports = {
   HELP: {
     rainbow_six_siege: (statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setFields(
-        { name: 'Useage', value: '/rainbow-six-siege `username:` `platform:`' },
-        { name: 'Example', value: '/rainbow-six-siege `username: csgo` `platform: xbox`' }
-      )
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Useage', value: '/rainbow-six-siege `username:` `platform:`' },
+          { name: 'Example', value: '/rainbow-six-siege `username: csgo` `platform: xbox`' }
+        )
     }
   },
   SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
@@ -65,5 +71,58 @@ module.exports = {
         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R>`, inline: true },
         { name: 'Bug', value: `${bug}` }
       );
+  },
+  CLASH_OF_CLANS: {
+    NOT_FOUND: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found!`);
+    },
+    HOME_BASE: (data, statify) => {
+      const embed = new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setTitle(`Lookup for ${data.name}`)
+      .setFields(
+        { name: 'Level', value: `> ${data.expLevel}`, inline: true },
+        { name: 'Town Hall', value: `> ${data.townHallLevel}`, inline: true },
+        { name: 'trophies', value: `> Current: ${data.trophies}\n> Best: ${data.bestTrophies}`, inline: true }
+      )
+      .setThumbnail(`attachment://${data.townHallLevel}.png`)
+      .setFooter({ text: 'page 1 - Player Information' });
+    if (data.league) embed.addFields({ name: 'League', value: `> ${data.league.name}`, inline: true });
+    return embed;
+    },
+    BUILDER_BASE: (data, statify) => {
+      return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: `Lookup for ${data.name}`, iconURL: statify.user.avatarURL(), url: 'https://statify.cc/' })
+      .setFields(
+        { name: 'Builder Hall', value: `> ${data.builderHallLevel}`, inline: true },
+        { name: 'Trophies', value: `> ${data.versusTrophies}`, inline: true },
+        { name: 'Best Trophies', value: `> ${data.bestVersusTrophies}`, inline: true },
+        { name: 'Total Battle Wins', value: `> ${data.versusBattleWins}`, inline: true }
+      )
+      .setThumbnail(`attachment://${data.builderHallLevel}.png`)
+      .setFooter({ text: 'Page 2 - Builder Base' });
+    }, 
+    CLAN_INFO: (data, statify) => {
+      if (!data.clan) return this.ERROR(`${statify.Emojis.ICON_WHITE} ${data.name} is not in a clan.`);
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: `Lookup for ${data.name}`, iconURL: statify.user.avatarURL(), url: 'https://statify.cc/' })
+        .setFields(
+          { name: 'Clan Name', value: `> ${data.clan.name}`, inline: true },
+          { name: 'Clan Tag', value: `> ${data.clan.tag}`, inline: true },
+          { name: 'Clan Level', value: `> ${data.clan.clanLevel}`, inline: true },
+          { name: 'Clan Role', value: `> ${data.role}`, inline: true },
+          { name: 'Clan War Stars', value: `> ${data.warStars}`, inline: true },
+          { name: 'Troops Donated', value: `> ${data.donations}`, inline: true },
+          { name: 'Troops Received', value: `> ${data.donationsReceived}`, inline: true }
+        )
+        .setThumbnail(data.clan.badgeUrls.small)
+        .setFooter({ text: 'Page 3 - Clan Stats' });
+    }
   }
 }
