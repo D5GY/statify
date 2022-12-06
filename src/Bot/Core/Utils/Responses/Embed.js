@@ -196,7 +196,7 @@ module.exports = {
         if (segment.stats.mvp) csgoStats.addFields({ name: 'MVP', value: `${segment.stats.mvp.displayValue}`, inline: true });
         if (segment.stats.timePlayed) csgoStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
       } else if (!segment) {
-        apexStats.csgoStats(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+        csgoStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
       }
 
     return csgoStats;
