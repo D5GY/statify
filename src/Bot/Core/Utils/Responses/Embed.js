@@ -81,32 +81,32 @@ module.exports = {
     },
     HOME_BASE: (data, statify) => {
       const embed = new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setTitle(`Lookup for ${data.name}`)
-      .setFields(
-        { name: 'Level', value: `> ${data.expLevel}`, inline: true },
-        { name: 'Town Hall', value: `> ${data.townHallLevel}`, inline: true },
-        { name: 'trophies', value: `> Current: ${data.trophies}\n> Best: ${data.bestTrophies}`, inline: true }
-      )
-      .setThumbnail(`attachment://${data.townHallLevel}.png`)
-      .setFooter({ text: 'page 1 - Player Information' });
-    if (data.league) embed.addFields({ name: 'League', value: `> ${data.league.name}`, inline: true });
-    return embed;
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setTitle(`Lookup for ${data.name}`)
+        .setFields(
+          { name: 'Level', value: `> ${data.expLevel}`, inline: true },
+          { name: 'Town Hall', value: `> ${data.townHallLevel}`, inline: true },
+          { name: 'trophies', value: `> Current: ${data.trophies}\n> Best: ${data.bestTrophies}`, inline: true }
+        )
+        .setThumbnail(`attachment://${data.townHallLevel}.png`)
+        .setFooter({ text: 'page 1 - Player Information' });
+      if (data.league) embed.addFields({ name: 'League', value: `> ${data.league.name}`, inline: true });
+      return embed;
     },
     BUILDER_BASE: (data, statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: `Lookup for ${data.name}`, iconURL: statify.user.avatarURL(), url: 'https://statify.cc/' })
-      .setFields(
-        { name: 'Builder Hall', value: `> ${data.builderHallLevel}`, inline: true },
-        { name: 'Trophies', value: `> ${data.versusTrophies}`, inline: true },
-        { name: 'Best Trophies', value: `> ${data.bestVersusTrophies}`, inline: true },
-        { name: 'Total Battle Wins', value: `> ${data.versusBattleWins}`, inline: true }
-      )
-      .setThumbnail(`attachment://${data.builderHallLevel}.png`)
-      .setFooter({ text: 'Page 2 - Builder Base' });
-    }, 
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: `Lookup for ${data.name}`, iconURL: statify.user.avatarURL(), url: 'https://statify.cc/' })
+        .setFields(
+          { name: 'Builder Hall', value: `> ${data.builderHallLevel}`, inline: true },
+          { name: 'Trophies', value: `> ${data.versusTrophies}`, inline: true },
+          { name: 'Best Trophies', value: `> ${data.bestVersusTrophies}`, inline: true },
+          { name: 'Total Battle Wins', value: `> ${data.versusBattleWins}`, inline: true }
+        )
+        .setThumbnail(`attachment://${data.builderHallLevel}.png`)
+        .setFooter({ text: 'Page 2 - Builder Base' });
+    },
     CLAN_INFO: (data, statify) => {
       if (!data.clan) return this.ERROR(`${statify.Emojis.ICON_WHITE} ${data.name} is not in a clan.`);
       return new EmbedBuilder()
@@ -136,27 +136,27 @@ module.exports = {
       const apexStats = new EmbedBuilder()
         .setColor(statify.Colors.BLUE)
         .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
-        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL });
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: data.data.platformInfo.avatarUrl ?? statify.user.avatarURL });
 
-        const segment = data.data.segments[0];
-        
-        if (segment) {
-          if (segment.stats.level) apexStats.addFields({ name: 'Level', value: `${segment.stats.level.displayValue}`, inline: true });
-          if (segment.stats.kills) apexStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
-          if (segment.stats.killsPerMatch) apexStats.addFields({ name: 'Kills Per Match', value: `${segment.stats.killsPerMatch.displayValue}`, inline: true });
-          if (segment.stats.winningKills) apexStats.addFields({ name: 'Winning Kills', value: `${segment.stats.winningKills.displayValue}`, inline: true });
-          if (segment.stats.killsAsKillLeader) apexStats.addFields({ name: 'Kills As Kill Leader', value: `${segment.stats.killsAsKillLeader.displayValue}`, inline: true });
-          if (segment.stats.damage) apexStats.addFields({ name: 'Total Damage', value: `${segment.stats.damage.displayValue}`, inline: true });
-          if (segment.stats.points) apexStats.addFields({ name: 'Points', value: `${segment.stats.points.displayValue}`, inline: true });
-          if (segment.stats.assists) apexStats.addFields({ name: 'Assists', value: `${segment.stats.assists.displayValue}`, inline: true });
-          if (segment.stats.finishers) apexStats.addFields({ name: 'Finishers', value: `${segment.stats.finishers.displayValue}`, inline: true });
-          if (segment.stats.deaths) apexStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
-          if (segment.stats.damageDealt) apexStats.addFields({ name: 'Damage Dealt', value: `${segment.stats.damageDealt.displayValue}`, inline: true });
-          if (segment.stats.matchesPlayed) apexStats.addFields({ name: 'Matches Played', value: `${segment.stats.matchesPlayed.displayValue}`, inline: true });
-          if (segment.stats.timePlayed) apexStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
-        } else if (!segment) {
-          apexStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
-        }
+      const segment = data.data.segments[0];
+
+      if (segment) {
+        if (segment.stats.level) apexStats.addFields({ name: 'Level', value: `${segment.stats.level.displayValue}`, inline: true });
+        if (segment.stats.kills) apexStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
+        if (segment.stats.killsPerMatch) apexStats.addFields({ name: 'Kills Per Match', value: `${segment.stats.killsPerMatch.displayValue}`, inline: true });
+        if (segment.stats.winningKills) apexStats.addFields({ name: 'Winning Kills', value: `${segment.stats.winningKills.displayValue}`, inline: true });
+        if (segment.stats.killsAsKillLeader) apexStats.addFields({ name: 'Kills As Kill Leader', value: `${segment.stats.killsAsKillLeader.displayValue}`, inline: true });
+        if (segment.stats.damage) apexStats.addFields({ name: 'Total Damage', value: `${segment.stats.damage.displayValue}`, inline: true });
+        if (segment.stats.points) apexStats.addFields({ name: 'Points', value: `${segment.stats.points.displayValue}`, inline: true });
+        if (segment.stats.assists) apexStats.addFields({ name: 'Assists', value: `${segment.stats.assists.displayValue}`, inline: true });
+        if (segment.stats.finishers) apexStats.addFields({ name: 'Finishers', value: `${segment.stats.finishers.displayValue}`, inline: true });
+        if (segment.stats.deaths) apexStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
+        if (segment.stats.damageDealt) apexStats.addFields({ name: 'Damage Dealt', value: `${segment.stats.damageDealt.displayValue}`, inline: true });
+        if (segment.stats.matchesPlayed) apexStats.addFields({ name: 'Matches Played', value: `${segment.stats.matchesPlayed.displayValue}`, inline: true });
+        if (segment.stats.timePlayed) apexStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
+      } else if (!segment) {
+        apexStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+      }
 
       return apexStats;
     }
@@ -170,12 +170,12 @@ module.exports = {
     },
     STATS: (data, statify) => {
       const csgoStats = new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
 
       const segment = data.data.segments[0];
-      
+
       if (segment) {
         if (segment.stats.kills) csgoStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
         if (segment.stats.deaths) csgoStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
@@ -199,24 +199,24 @@ module.exports = {
         csgoStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
       }
 
-    return csgoStats;
+      return csgoStats;
     }
   },
   DIVISION_2: {
     NOT_FOUND: (username, platform, statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.RED)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
     },
     STATS: (data, statify) => {
       const divisionStats = new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
 
       const segment = data.data.segments[0];
-      
+
       if (segment) {
         if (segment.stats.killsPvP) divisionStats.addFields({ name: 'Player Kills', value: `${segment.stats.killsPvP.displayValue}`, inline: true });
         if (segment.stats.killsNpc) divisionStats.addFields({ name: 'NPC Kills', value: `${segment.stats.killsNpc.displayValue}`, inline: true });
@@ -230,7 +230,7 @@ module.exports = {
         divisionStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
       }
 
-    return divisionStats;
+      return divisionStats;
     }
   },
   SPLITGATE: {
@@ -242,18 +242,18 @@ module.exports = {
     },
     NOT_FOUND: (username, platform, statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.RED)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
     },
     STATS: (data, statify) => {
       const splitgateStats = new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
 
       const segment = data.data.segments[0];
-      
+
       if (segment) {
         if (segment.stats.kills) splitgateStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
         if (segment.stats.deaths) splitgateStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
@@ -267,7 +267,7 @@ module.exports = {
       } else if (!segment) {
         splitgateStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
       }
-    return splitgateStats;
+      return splitgateStats;
     }
   }
 }
