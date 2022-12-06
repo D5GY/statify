@@ -8,7 +8,8 @@ module.exports = class requestAPI {
     this.TRACKER_GG = {
       HEADER: { 'TRN-Api-Key': API.TRACKER_GG, 'content-type': 'application/json' },
       ApexURL: 'https://public-api.tracker.gg/v2/apex/standard/profile',
-      CSGOURL: 'https://public-api.tracker.gg/v2/csgo/standard/profile'
+      CSGOURL: 'https://public-api.tracker.gg/v2/csgo/standard/profile',
+      Division2URL: 'https://public-api.tracker.gg/v2/division-2/standard/profile'
     }
   }
   async ClashOfClans(username) {
@@ -48,6 +49,22 @@ module.exports = class requestAPI {
       try {
         request.get({
           url: `${this.TRACKER_GG.CSGOURL}/steam/${encodeURIComponent(username)}`,
+          headers: this.TRACKER_GG.HEADER
+        }, (error, response, body) => {
+          if (error)
+            return reject(error);
+          else resolve(body)
+        }); 
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+  async Division2(username, platform) {
+    return new Promise((resolve, reject) => {
+      try {
+        request.get({
+          url: `${this.TRACKER_GG.Division2URL}/${platform}/${encodeURIComponent(username)}`,
           headers: this.TRACKER_GG.HEADER
         }, (error, response, body) => {
           if (error)

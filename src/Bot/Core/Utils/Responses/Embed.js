@@ -201,5 +201,36 @@ module.exports = {
 
     return csgoStats;
     }
+  },
+  DIVISION_2: {
+    NOT_FOUND: (username, platform, statify) => {
+      return new EmbedBuilder()
+      .setColor(statify.Colors.RED)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
+    },
+    STATS: (data, statify) => {
+      const divisionStats = new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
+
+      const segment = data.data.segments[0];
+      
+      if (segment) {
+        if (segment.stats.killsPvP) divisionStats.addFields({ name: 'Player Kills', value: `${segment.stats.killsPvP.displayValue}`, inline: true });
+        if (segment.stats.killsNpc) divisionStats.addFields({ name: 'NPC Kills', value: `${segment.stats.killsNpc.displayValue}`, inline: true });
+        if (segment.stats.headshots) divisionStats.addFields({ name: 'Headshots', value: `${segment.stats.headshots.displayValue}`, inline: true });
+        if (segment.stats.itemsLooted) divisionStats.addFields({ name: 'Items Looted', value: `${segment.stats.itemsLooted.displayValue}`, inline: true });
+        if (segment.stats.highestPlayerLevel) divisionStats.addFields({ name: 'Level', value: `${segment.stats.highestPlayerLevel.displayValue}`, inline: true });
+        if (segment.stats.specialization) divisionStats.addFields({ name: 'Specialization', value: `${segment.stats.specialization.displayValue}`, inline: true });
+        if (segment.stats.xPTotal) divisionStats.addFields({ name: 'Total XP', value: `${segment.stats.xPTotal.displayValue}`, inline: true });
+        if (segment.stats.timePlayed) divisionStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
+      } else if (!segment) {
+        divisionStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+      }
+
+    return divisionStats;
+    }
   }
 }
