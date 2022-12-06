@@ -160,5 +160,46 @@ module.exports = {
 
       return apexStats;
     }
+  },
+  CSGO: {
+    NOT_FOUND: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on steam`);
+    },
+    STATS: (data, statify) => {
+      const csgoStats = new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
+
+      const segment = data.data.segments[0];
+      
+      if (segment) {
+        if (segment.stats.kills) csgoStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
+        if (segment.stats.deaths) csgoStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
+        if (segment.stats.kd) csgoStats.addFields({ name: 'K/D', value: `${segment.stats.kd.displayValue}`, inline: true });
+        if (segment.stats.score) csgoStats.addFields({ name: 'Score', value: `${segment.stats.score.displayValue}`, inline: true });
+        if (segment.stats.damage) csgoStats.addFields({ name: 'Damage', value: `${segment.stats.damage.displayValue}`, inline: true });
+        if (segment.stats.headshots) csgoStats.addFields({ name: 'Headshots', value: `${segment.stats.headshots.displayValue}`, inline: true });
+        if (segment.stats.shotsFired) csgoStats.addFields({ name: 'Shots Fired', value: `${segment.stats.shotsFired.displayValue}`, inline: true });
+        if (segment.stats.shotsHit) csgoStats.addFields({ name: 'Shots Hit', value: `${segment.stats.shotsHit.displayValue}`, inline: true });
+        if (segment.stats.shotsAccuracy) csgoStats.addFields({ name: 'Accuracy', value: `${segment.stats.shotsAccuracy.displayValue}`, inline: true });
+        if (segment.stats.bombsPlanted) csgoStats.addFields({ name: 'Bombs Planted', value: `${segment.stats.bombsPlanted.displayValue}`, inline: true });
+        if (segment.stats.bombsDefused) csgoStats.addFields({ name: 'Bombs Defused', value: `${segment.stats.bombsDefused.displayValue}`, inline: true });
+        if (segment.stats.matchesPlayed) csgoStats.addFields({ name: 'Matches Played', value: `${segment.stats.matchesPlayed.displayValue}`, inline: true });
+        if (segment.stats.wins) csgoStats.addFields({ name: 'Wins', value: `${segment.stats.wins.displayValue}`, inline: true });
+        if (segment.stats.losses) csgoStats.addFields({ name: 'Losses', value: `${segment.stats.losses.displayValue}`, inline: true });
+        if (segment.stats.ties) csgoStats.addFields({ name: 'Ties', value: `${segment.stats.ties.displayValue}`, inline: true });
+        if (segment.stats.wlPercentage) csgoStats.addFields({ name: 'W/L', value: `${segment.stats.wlPercentage.displayValue}`, inline: true });
+        if (segment.stats.mvp) csgoStats.addFields({ name: 'MVP', value: `${segment.stats.mvp.displayValue}`, inline: true });
+        if (segment.stats.timePlayed) csgoStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
+      } else if (!segment) {
+        apexStats.csgoStats(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+      }
+
+    return csgoStats;
+    }
   }
 }
