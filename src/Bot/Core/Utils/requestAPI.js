@@ -9,7 +9,8 @@ module.exports = class requestAPI {
       HEADER: { 'TRN-Api-Key': API.TRACKER_GG, 'content-type': 'application/json' },
       ApexURL: 'https://public-api.tracker.gg/v2/apex/standard/profile',
       CSGOURL: 'https://public-api.tracker.gg/v2/csgo/standard/profile',
-      Division2URL: 'https://public-api.tracker.gg/v2/division-2/standard/profile'
+      Division2URL: 'https://public-api.tracker.gg/v2/division-2/standard/profile',
+      SplitgateURL: 'https://public-api.tracker.gg/v2/splitgate/standard/profile'
     }
   }
   async ClashOfClans(username) {
@@ -65,6 +66,22 @@ module.exports = class requestAPI {
       try {
         request.get({
           url: `${this.TRACKER_GG.Division2URL}/${platform}/${encodeURIComponent(username)}`,
+          headers: this.TRACKER_GG.HEADER
+        }, (error, response, body) => {
+          if (error)
+            return reject(error);
+          else resolve(body)
+        }); 
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+  async Splitgate(username, platform) {
+    return new Promise((resolve, reject) => {
+      try {
+        request.get({
+          url: `${this.TRACKER_GG.SplitgateURL}/${platform}/${encodeURIComponent(username)}`,
           headers: this.TRACKER_GG.HEADER
         }, (error, response, body) => {
           if (error)

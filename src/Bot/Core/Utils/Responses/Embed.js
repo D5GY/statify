@@ -232,5 +232,42 @@ module.exports = {
 
     return divisionStats;
     }
+  },
+  SPLITGATE: {
+    STEAM_ID: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} please provide a steam user-id to lookup.`);
+    },
+    NOT_FOUND: (username, platform, statify) => {
+      return new EmbedBuilder()
+      .setColor(statify.Colors.RED)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
+    },
+    STATS: (data, statify) => {
+      const splitgateStats = new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setTitle(`Lookup for ${data.data.platformInfo.platformUserHandle}`)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL:  data.data.platformInfo.avatarUrl ?? statify.user.avatarURL() });
+
+      const segment = data.data.segments[0];
+      
+      if (segment) {
+        if (segment.stats.kills) splitgateStats.addFields({ name: 'Kills', value: `${segment.stats.kills.displayValue}`, inline: true });
+        if (segment.stats.deaths) splitgateStats.addFields({ name: 'Deaths', value: `${segment.stats.deaths.displayValue}`, inline: true });
+        if (segment.stats.assists) splitgateStats.addFields({ name: 'Assists', value: `${segment.stats.assists.displayValue}`, inline: true });
+        if (segment.stats.points) splitgateStats.addFields({ name: 'Points', value: `${segment.stats.points.displayValue}`, inline: true });
+        if (segment.stats.damageDealt) splitgateStats.addFields({ name: 'Damage Dealt', value: `${segment.stats.damageDealt.displayValue}`, inline: true });
+        if (segment.stats.wins) splitgateStats.addFields({ name: 'Wins', value: `${segment.stats.wins.displayValue}`, inline: true });
+        if (segment.stats.losses) splitgateStats.addFields({ name: 'Losses', value: `${segment.stats.losses.displayValue}`, inline: true });
+        if (segment.stats.matchesPlayed) splitgateStats.addFields({ name: 'Matches Played', value: `${segment.stats.matchesPlayed.displayValue}`, inline: true });
+        if (segment.stats.timePlayed) splitgateStats.addFields({ name: 'Time Played', value: `${segment.stats.timePlayed.displayValue}`, inline: true });
+      } else if (!segment) {
+        splitgateStats.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+      }
+    return splitgateStats;
+    }
   }
 }
