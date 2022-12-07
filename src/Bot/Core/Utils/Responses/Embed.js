@@ -117,7 +117,52 @@ module.exports = {
           { name: 'Usage', value: '/rainbow-six-siege `username:` `platform:`' },
           { name: 'Example', value: '/rainbow-six-siege `username: csgo` `platform: xbox`' }
         )
-    }
+    },
+    the_division_2: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/division-2 `username:` `platform:`' },
+          { name: 'Example', value: '/division-2 `username: RoGuETXXRXCk` `platform: xbox`' }
+        )
+    },
+    splitgate: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/splitgate `username:` `platform:`' },
+          { name: 'Example', value: '/splitgate `username: LyK1Nw0Lf` `platform: xbox`' }
+        )
+    },
+    apex_legends: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/apex-legends `username:` `platform:`' },
+          { name: 'Example', value: '/apex-legends `username: maujeh` `platform: xbox`' }
+        )
+    },
+    csgo: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/csgo `username:`' },
+          { name: 'Example', value: '/csgo `username: iriaisa`' }
+        )
+    },
+    clash_of_clans: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/clash-of-clans `player-tag:`' },
+          { name: 'Example', value: '/clash-of-clans `player-tag: #8J9RQGLUC`' }
+        )
+    },
   },
   SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
     return new EmbedBuilder()
