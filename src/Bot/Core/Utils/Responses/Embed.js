@@ -1,9 +1,9 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, Guild } = require('discord.js');
 const statify = require('../../statify');
 module.exports = {
   /**
    * @param { statify } statify
-   */
+  */
   ERROR: (error, statify) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
@@ -15,6 +15,75 @@ module.exports = {
       .setColor(statify.Colors.BLUE)
       .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
       .setDescription(`${statify.Emojis.ICON_GREEN} My API ping is ${statify.ws.ping}\n${statify.Emojis.ICON_GREEN} My Client ping is ${ClientPing}`);
+  },
+  GUILD_MEMBER_ADD: (member, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.GREEN)
+      .setTitle('New Member')
+      .setFields(
+        { name: 'Member', value: `User: ${member.user} (${member.user.tag}) \n ID: ${member.user.id} \n isBot: ${member.user.bot}`, inline: false },
+        { name: 'Account Creation Date', value: `<t:${Math.floor(member.user.createdTimestamp / 1000)}:F> (<t:${Math.floor(member.user.createdTimestamp / 1000)}:R>)`, inline: false }
+      )
+      .setThumbnail(member.user.avatarURL() ?? statify.user.avatarURL())
+      .setTimestamp()
+  },
+  GUILD_MEMBER_REMOVE: (member, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.RED)
+      .setTitle('Member Left')
+      .setFields(
+        { name: 'Member', value: `User: ${member.user} (${member.user.tag}) \n ID: ${member.user.id} \n isBot: ${member.user.bot}`, inline: false },
+        { name: 'Join Date', value: `<t:${Math.floor(member.joinedTimestamp / 1000)}:F> (<t:${Math.floor(member.joinedTimestamp / 1000)}:R>)`, inline: false }
+      )
+      .setThumbnail(member.user.avatarURL() ?? statify.user.avatarURL())
+      .setTimestamp()
+  },
+  GUILD_CREATE: (guild, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.GREEN)
+      .setTitle('statify Joined A Server')
+      .setFields(
+        { name: 'Server', value: `Guild Name: ${guild.name} \n Guild ID: ${guild.id} \n Guild Members: ${guild.memberCount}` },
+        { name: 'Guild Creation Date', value: `<t:${Math.floor(guild.createdTimestamp / 1000)}:F> (<t:${Math.floor(guild.createdTimestamp / 1000)}:R>)`, inline: false }
+      )
+      .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
+      .setTimestamp()
+  },
+  GUILD_DELETE: (guild, statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.GREEN)
+      .setTitle('statify Was Removed From A Server')
+      .setFields(
+        { name: 'Server', value: `Guild Name: ${guild.name} \n Guild ID: ${guild.id} \n Guild Members: ${guild.memberCount}` },
+        { name: 'Guild Join Date', value: `<t:${Math.floor(guild.joinedTimestamp / 1000)}:F> (<t:${Math.floor(guild.joinedTimestamp / 1000)}:R>)`, inline: false }
+      )
+      .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
+      .setTimestamp()
+  },
+  MESSAGE_UPDATE: (oldMessage, newMessage, statify) => {
+    return new EmbedBuilder()
+    .setColor(statify.Colors.BLUE)
+    .setTitle('Edited Message')
+    .setDescription(`[Jump To Message](${oldMessage.url})`)
+    .setFields(
+      { name: 'Member', value: `User: ${oldMessage.author} \n ID: ${oldMessage.author.id}` },
+      { name: 'Old Message Content', value: `${oldMessage}`},
+      { name: 'New Message Content', value: `${newMessage}`}
+    )
+    .setThumbnail(oldMessage.author.avatarURL() ?? statify.user.avatarURL())
+    .setTimestamp()
+  },
+  MESSAGE_DELETE: (message, statify) => {
+    return new EmbedBuilder()
+    .setColor(statify.Colors.BLUE)
+    .setTitle('Deleted Message')
+    .setDescription(`Channel: ${message.channel}`)
+    .setFields(
+      { name: 'Member', value: `User: ${message.author} \n ID: ${message.author.id}`},
+      { name: 'Delete Message Content', value: `${message.content}`},
+    )
+    .setThumbnail(message.author.avatarURL() ?? statify.user.avatarURL())
+    .setTimestamp()
   },
   rainbow_six_siege_general: (data, statify) => {
     return new EmbedBuilder()
