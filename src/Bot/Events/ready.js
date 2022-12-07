@@ -10,12 +10,14 @@ module.exports = async (statify) => {
       statify.logger.RED('bot', error);
     }).then(() => {
       statify.logger.CYAN('bot', 'Interaction commands set (developer)');
+      statify.user.setPresence({ activities: [{ name: `Developerment | v${require('../../../package.json').version}`}]})
     });
   } else {
     statify.application.commands.set(statify.commandsData).catch((error) => {
       statify.logger.RED('bot', error);
     }).then(() => {
       statify.logger.BLUE('bot', 'Interaction commands');
+      statify.user.setPresence({ activities: [{ name: `statify.cc | v${require('../../../package.json').version}`}]})
     });
   }
 }
