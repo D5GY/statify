@@ -6,7 +6,12 @@ const helpMenu = new ActionRowBuilder().addComponents(
     .setMinValues(1)
     .setMaxValues(1)
     .setOptions([
-      { label: 'Rainbow Six Siege', description: 'Shows how to use the Rainbow Six Siege command', value: 'r6s' }
+      { label: 'Rainbow Six Siege', description: 'Shows how to use the Rainbow Six Siege command', value: 'r6s' },
+      { label: 'The Divison 2', description: 'Shows how to use the The Division 2 command', value: 'td2' },
+      { label: 'Splitgate', description: 'Shows how to use the Splitgate command', value: 'spg' },
+      { label: 'Apex Legends', description: 'Shows how to use the Apex Legends command', value: 'apl' },
+      { label: 'Csgo', description: 'Shows how to use the CSGO command', value: 'csg' },
+      { label: 'Clash Of Clans', description: 'Shows how to use the Clash Of Clans command', value: 'coc' }
     ])
 );
 
