@@ -44,16 +44,22 @@ class statify extends Client {
 
     this.webhooks = {
       suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN }),
-      bugreport: new WebhookClient({ id: this.config.WEBHOOKS.BUGREPORT_SUBMIT.ID, token: this.config.WEBHOOKS.BUGREPORT_SUBMIT.TOKEN })
+      bugreport: new WebhookClient({ id: this.config.WEBHOOKS.BUGREPORT_SUBMIT.ID, token: this.config.WEBHOOKS.BUGREPORT_SUBMIT.TOKEN }),
+      guildCreate: new WebhookClient({ id: this.config.WEBHOOKS.GUILD_JOIN.ID, token: this.config.WEBHOOKS.GUILD_JOIN.TOKEN }),
+      guildDelete: new WebhookClient({ id: this.config.WEBHOOKS.GUILD_LEAVE.ID, token: this.config.WEBHOOKS.GUILD_LEAVE.TOKEN }),
+      guildMemberAdd: new WebhookClient({ id: this.config.WEBHOOKS.JOIN_MEMBER.ID, token: this.config.WEBHOOKS.JOIN_MEMBER.TOKEN }),
+      guildMemberRemove: new WebhookClient({ id: this.config.WEBHOOKS.LEAVE_MEMBER.ID, token: this.config.WEBHOOKS.LEAVE_MEMBER.TOKEN }),
+      messageUpdate: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_UPDATE.ID, token: this.config.WEBHOOKS.MESSAGE_UPDATE.TOKEN }),
+      messageDelete: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_DELETE.ID, token: this.config.WEBHOOKS.MESSAGE_DELETE.TOKEN }),
     }
 
-    this.eventsCount = 0;
-    this.commands = new Collection();
     this.commandsData = [];
-    this.commandsCount = 0;
-    this.selectMenus = new Collection();
-    this.selectMenusCount = 0;
     this.modals = new Collection();
+    this.selectMenus = new Collection();
+    this.commands = new Collection();
+    this.commandsCount = 0;
+    this.eventsCount = 0;
+    this.selectMenusCount = 0;
     this.modalsCount = 0;
   }
   loadEvents() {
@@ -65,7 +71,7 @@ class statify extends Client {
       delete require.cache[require.resolve(`${eventDir}/${event}`)];
       this.eventsCount++;
     }
-    this.logger.BLUE('bot', `Loaded ${this.eventsCount} ${this.eventsCount == 1 ? 'event' : 'events'}`);
+    this.logger.BLUE('bot', `Loaded ${this.eventsCount} ${this.eventsCount == 1 ? 'Event' : 'Events'}`);
   }
   loadInteractions() {
     const interactionDir = `${__dirname}/../Interactions`;
@@ -98,9 +104,9 @@ class statify extends Client {
         }
       }
     }
-    this.logger.BLUE('bot', `Loaded ${this.commandsCount} ${this.commandsCount == 1 ? 'command' : 'commands'}`);
-    this.logger.BLUE('bot', `Loaded ${this.selectMenusCount} ${this.selectMenusCount == 1 ? 'select menu' : 'select menus'}`);
-    this.logger.BLUE('bot', `Loaded ${this.modalsCount} ${this.modalsCount == 1 ? 'modal' : 'modals'}`);
+    this.logger.BLUE('bot', `Loaded ${this.commandsCount} ${this.commandsCount == 1 ? 'Command' : 'Commands'}`);
+    this.logger.BLUE('bot', `Loaded ${this.selectMenusCount} ${this.selectMenusCount == 1 ? 'Select menu' : 'Select menus'}`);
+    this.logger.BLUE('bot', `Loaded ${this.modalsCount} ${this.modalsCount == 1 ? 'Modal' : 'Modals'}`);
   }
   start() {
     this.loadEvents();
