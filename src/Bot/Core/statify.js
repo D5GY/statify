@@ -1,21 +1,19 @@
-const { Client, GatewayIntentBits, Partials, Collection, WebhookClient } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Collection, WebhookClient, AllowedMentionsTypes } = require('discord.js');
 const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
 const utils = require('./Utils');
 const Utils = require('./Utils');
+const { GuildInvites, GuildMembers, GuildMessages, GuildPresences, Guilds, GuildWebhooks, MessageContent } = GatewayIntentBits;
+const { Channel, GuildMember, Message, User } = Partials;
+
 
 class statify extends Client {
   constructor() {
     super({
-      intents: [
-        GatewayIntentBits.GuildInvites, GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildWebhooks,
-        GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent
-      ],
-      partials: [
-        Partials.Channel, Partials.GuildMember, Partials.Message, Partials.User
-      ]
+      intents: [ GuildInvites, GuildMembers, GuildMessages, GuildMessages, GuildPresences, GuildWebhooks, Guilds, MessageContent ],
+      partials: [ Channel, GuildMember, Message, User ],
+      presence: { afk: false, status: 'online' }
     });
 
 
@@ -36,10 +34,7 @@ class statify extends Client {
 
     this.config = Config;
     this.logger = Logger;
-    this.response = {
-      content: utils.content,
-      embed: utils.embeds
-    }
+    this.response = { content: utils.content, embed: utils.embeds };
     this.requestAPI = new Utils.requestAPI(this.config.BOT.API_KEYS);
 
     this.webhooks = {
@@ -51,7 +46,8 @@ class statify extends Client {
       guildMemberRemove: new WebhookClient({ id: this.config.WEBHOOKS.LEAVE_MEMBER.ID, token: this.config.WEBHOOKS.LEAVE_MEMBER.TOKEN }),
       messageUpdate: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_UPDATE.ID, token: this.config.WEBHOOKS.MESSAGE_UPDATE.TOKEN }),
       messageDelete: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_DELETE.ID, token: this.config.WEBHOOKS.MESSAGE_DELETE.TOKEN }),
-    }
+      nicknameUpdate: new WebhookClient({ id: this.config.WEBHOOKS.NICKNAME_UPDATE.ID, token: this.config.WEBHOOKS.NICKNAME_UPDATE.TOKEN }),
+    };
 
     this.commandsData = [];
     this.modals = new Collection();
@@ -61,6 +57,7 @@ class statify extends Client {
     this.eventsCount = 0;
     this.selectMenusCount = 0;
     this.modalsCount = 0;
+
   }
   loadEvents() {
     const eventDir = `${__dirname}/../Events`;
@@ -105,7 +102,7 @@ class statify extends Client {
       }
     }
     this.logger.BLUE('bot', `Loaded ${this.commandsCount} ${this.commandsCount == 1 ? 'Command' : 'Commands'}`);
-    this.logger.BLUE('bot', `Loaded ${this.selectMenusCount} ${this.selectMenusCount == 1 ? 'Select menu' : 'Select menus'}`);
+    this.logger.BLUE('bot', `Loaded ${this.selectMenusCount} ${this.selectMenusCount == 1 ? 'Select Menu' : 'Select Menus'}`);
     this.logger.BLUE('bot', `Loaded ${this.modalsCount} ${this.modalsCount == 1 ? 'Modal' : 'Modals'}`);
   }
   start() {

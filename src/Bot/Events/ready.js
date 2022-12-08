@@ -1,3 +1,4 @@
+const { ActivityType } = require('discord.js');
 const statify = require('../Core/statify');
 /**
  * 
@@ -10,14 +11,14 @@ module.exports = async (statify) => {
       statify.logger.RED('bot', error);
     }).then(() => {
       statify.logger.CYAN('bot', 'Interaction commands set (developer)');
-      statify.user.setPresence({ activities: [{ name: `Developerment | v${require('../../../package.json').version}`}]})
+      statify.user.setPresence({ activities: [{ name: `Developerment | v${require('../../../package.json').version}`, type: ActivityType.Watching }]})
     });
   } else {
     statify.application.commands.set(statify.commandsData).catch((error) => {
       statify.logger.RED('bot', error);
     }).then(() => {
       statify.logger.BLUE('bot', 'Interaction commands');
-      statify.user.setPresence({ activities: [{ name: `statify.cc | v${require('../../../package.json').version}`}]})
+      statify.user.setPresence({ activities: [{ name: `statify.cc | v${require('../../../package.json').version}`, type: ActivityType.Watching }]})
     });
   }
-}
+};

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <img src="/images/statify_logo.png" class="navbar-brand" width="115" height="50" alt="" srcset="" height="40" title="statify Official Website">
+    </div>
+    <ul class="nav-links">
+      <li> <a href="#" class="active"> <i class='fa-solid fa-house'></i> <span class="links_name">Dashboard</span> </a> </li>
+      <li> <a href="#" class="na"> <i class='fa-solid fa-bars'></i> <span class="links_name">Overview</span> </a> </li>
+      <li> <a href="#" class="na"> <i class='fa-solid fa-cog'></i> <span class="links_name">Statistics</span> </a> </li>
+      <li> <a href="#" class="na"> <i class='fa-solid fa-database'></i> <span class="links_name">Manage</span> </a> </li>
+      <li> <a href="/status" class="na"> <i class="fa-solid fa-server"></i> <span class="links_name">Status</span> </a> </li>
+      <li> <a href="/discord" class="na"> <i class='fa-brands fa-discord'></i> <span class="links_name">Discord</span> </a> </li>
+    </ul>
+    <div class="side-footer">
+      <p>Date: ^date</p>
+    </div>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='fa-solid fa-house'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+      <div class="profile-details">
+        <i class='fa-solid fa-user'></i>
+        <span class="admin_name">username</span>
+      </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Guilds</div>
+            <div class="number">55</div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Guild Members</div>
+            <div class="number">1124</div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Commands Used</div>
+            <div class="number">2842</div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Uptime</div>
+            <div class="number">18 Days</div>
+            <!-- <div class="indicator">
+              <span class="text">1</span>
+              <i class=""></i>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/sidebar.js"></script>
+</body>
+
+</html>

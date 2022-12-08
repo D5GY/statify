@@ -14,7 +14,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(join(__dirname, 'public')));
 
 //Discord Auth
-
 require('./Utils/Auth/passport')(passport);
 
 app.use(session({
@@ -30,13 +29,13 @@ app.get('/api/login', require('./Utils/Auth/Login'));
 app.get('/logout', require('./Utils/Auth/Logout'));
 
 // Routes
-app.get('/', require('./Utils/Routes/home'));
+app.get('/', require('./Utils/Routes/home'));app.get('/games', require('./Utils/Routes/games'));
+
 app.get('/login', require('./Utils/Routes/login'));
+app.get('/admin', require('./Utils/Routes/Dashboard/dash'));
 app.get('/dashboard/index', require('./Utils/Routes/Dashboard/'));
 
-
-// redirects
-
+// Redirects
 app.get('/discord', (req, res) => {
   res.redirect(WEBSITE.URLs.DISCORD_INVITE);
 });
@@ -52,6 +51,8 @@ app.get('/vote', (req, res) => {
 app.get('/github', (req, res) => {
   res.redirect(WEBSITE.URLs.GITHUB);
 });
+
+app.get('*', require('./Utils/Routes/error'));
 
 // Start Website
 app.listen(WEBSITE.PORT, ()=> {

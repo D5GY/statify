@@ -1,0 +1,47 @@
+#error {
+  min-height: 969px;
+  background: $backgroundDark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    position: relative;
+    max-width: 1140px;
+    max-height: 576px;
+    width: 100%;
+    background: $backgroundDark;
+
+    .box {
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      background: $backgroundDark;
+      .error-items {
+        color: $fontColor;
+        background: $backgroundDark;
+
+        h1, h2 {
+          background: $backgroundDark;
+        }
+
+        button {
+          color: $fontColor;
+
+          i {
+            margin-right: 5px;
+            background: $backgroundDark;
+          }
+
+          &:hover {
+            background: $backgroundDimDark;
+            box-shadow: 0 0px 10px $backgroundDark;
+            i {
+              background: $backgroundDimDark;
+            }
+          }
+        }
+      }
+    }
+  }
+}

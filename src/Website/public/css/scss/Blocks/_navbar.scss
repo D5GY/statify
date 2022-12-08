@@ -1,5 +1,5 @@
 #mainNav {
-  background-color: $background;
+  background: $test;
   transition: background-color 0.2s ease;
   border-bottom: solid 2px $blue;
 
@@ -20,6 +20,9 @@
       color: $fontColor;
       &:hover { 
         color: $blue;
+        i {
+          color: $blue;
+        }
       }
     }
   }
@@ -40,15 +43,20 @@
     border: none;
     width: 105px;
     height: 37px;
-    background-color: $blue;
     color: $fontColor;
+    background: $test;
     &:hover {
-      color: $blueDark;
+      color: $fontColor;
+      box-shadow: 0 0px 10px $blue;
+
+      i {
+        color: $blue;
+      }
     }
     .icon {
       color: $fontColor;
       background: inherit;
-      float: left;
+      float: right;
       margin-top: 5px;
     }
   }
@@ -57,7 +65,7 @@
 @media (min-width: 992px) {
   #mainNav {
     border-bottom: solid 2px $blue;
-    background-color: $background;
+    background: $test;
 
     .navbar-nav .nav-item {
       .nav-link {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+</head>
+
+<body>
+
+  <section id="overview">
+    <div class="navbar1">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <img src="/images/statify_logo.png" class="navbar-brand" width="115" height="50" alt="" srcset="" height="40">
+            <div class="nav-sideitem">
+              <div class=" sidebar dropdown">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="/images/statify_logo_icon.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                  <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                </ul>
+              </div>
+            </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="navbar2">
+      <div class="container">
+        <ul class="navbar">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><i class="fa-solid fa-house"></i><span>Overview</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa-solid fa-house"></i><span>Guild Information</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa-solid fa-house"></i><span>Stats</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="overview-items">
+      <div class="container">
+        <div class="dash-main">
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('./Blocks/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/statify.js"></script>
+</body>
+
+</html>

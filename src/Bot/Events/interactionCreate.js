@@ -79,4 +79,4 @@ module.exports = async (interaction) => {
       return statify.logger.RED('bot', error);
     }
   }
-}
+};

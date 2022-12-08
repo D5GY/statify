@@ -1,0 +1,39 @@
+#games {
+  .games-title {
+    background: $test;
+    text-align: center;
+    font-size: 60px;
+    margin-top: 0.8rem;
+  }
+
+  .games-description {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 1.7rem;
+  }
+
+  .card-wrap {
+    margin-bottom: 2rem;
+
+    .card {
+      background: $backgroundDimDarker;
+      border-radius: 2px;
+      border: solid 2px $blue;
+  
+
+      .card-header {
+        text-align: center;
+        font-size: 30px;
+      }
+
+      .card-img-top {
+        max-height: 200px;
+      }
+      .card-body {
+        text-align: center;
+        font-size: 14px;
+        background: $backgroundDimDarker;
+      }
+    }
+  }
+}
