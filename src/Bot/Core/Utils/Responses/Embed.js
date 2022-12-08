@@ -38,19 +38,6 @@ module.exports = {
       .setThumbnail(member.user.avatarURL() ?? statify.user.avatarURL())
       .setTimestamp()
   },
-  GUILD_MEMBER_UPDATE: (before, after, statify) => {
-    return new EmbedBuilder()
-    .setColor(statify.Colors.BLUE)
-    .setTitle('Name Change')
-    .setFields(
-      { name: 'Member', value: `User: ${before.user} (${before.user.tag})`, inline: false },
-      { name: 'Old Name', value: `${before.nickname}`, inline: false },
-      { name: 'New Name', value: `${after.nickname}`, inline: false }
-      )
-      .setFooter({ text: `ID: ${before.user.id}`})
-      .setThumbnail(before.user.avatarURL() ?? statify.user.avatarURL())
-      .setTimestamp()
-  },
   GUILD_CREATE: (guild, statify) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.GREEN)

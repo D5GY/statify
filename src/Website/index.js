@@ -32,7 +32,6 @@ app.get('/logout', require('./Utils/Auth/Logout'));
 app.get('/', require('./Utils/Routes/home'));app.get('/games', require('./Utils/Routes/games'));
 
 app.get('/login', require('./Utils/Routes/login'));
-app.get('/admin', require('./Utils/Routes/Dashboard/dash'));
 app.get('/dashboard/index', require('./Utils/Routes/Dashboard/'));
 
 // Redirects

@@ -46,7 +46,6 @@ class statify extends Client {
       guildMemberRemove: new WebhookClient({ id: this.config.WEBHOOKS.LEAVE_MEMBER.ID, token: this.config.WEBHOOKS.LEAVE_MEMBER.TOKEN }),
       messageUpdate: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_UPDATE.ID, token: this.config.WEBHOOKS.MESSAGE_UPDATE.TOKEN }),
       messageDelete: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_DELETE.ID, token: this.config.WEBHOOKS.MESSAGE_DELETE.TOKEN }),
-      nicknameUpdate: new WebhookClient({ id: this.config.WEBHOOKS.NICKNAME_UPDATE.ID, token: this.config.WEBHOOKS.NICKNAME_UPDATE.TOKEN }),
     };
 
     this.commandsData = [];
