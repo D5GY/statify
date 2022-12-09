@@ -383,5 +383,26 @@ module.exports = {
       }
       return splitgateStats;
     }
+  },
+  MINECRAFT: (data, ip, statify) => {
+    let description = undefined;
+    if (typeof data.description == 'string') {
+      description = data.description;
+    } else if (typeof data.description == 'object') {
+      description = data.description.text;
+    } else description = 'Unknown';
+    return new EmbedBuilder()
+    .setColor(statify.Colors.BLUE)
+    .setTitle(`Lookup for ${ip}`)
+    .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+    .setThumbnail(data.favicon)
+    .setFields(
+      { name: 'Online', value: `${data.online}`, inline: true },
+      { name: 'Source', value: `${data.source}`, inline: true },
+      { name: 'Response Time', value: `${data.took}`, inline: true },
+      { name: 'Players', value: `Online: ${data.players.online}\nMax: ${data.players.max}`, inline: true },
+      { name: 'Version', value: `${data.version.name}`, inline: true },
+      { name: 'Description', value: `${description}` }
+    );
   }
 }

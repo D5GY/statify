@@ -12,6 +12,7 @@ module.exports = class requestAPI {
       Division2URL: 'https://public-api.tracker.gg/v2/division-2/standard/profile',
       SplitgateURL: 'https://public-api.tracker.gg/v2/splitgate/standard/profile'
     }
+    this.MinecraftURL = 'https://eu.mc-api.net/v3/server/ping';
   }
   async ClashOfClans(username) {
     return new Promise((resolve, reject) => {
@@ -83,6 +84,21 @@ module.exports = class requestAPI {
         request.get({
           url: `${this.TRACKER_GG.SplitgateURL}/${platform}/${encodeURIComponent(username)}`,
           headers: this.TRACKER_GG.HEADER
+        }, (error, response, body) => {
+          if (error)
+            return reject(error);
+          else resolve(body)
+        }); 
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+  async Minecraft(ip) {
+    return new Promise((resolve, reject) => {
+      try {
+        request.get({
+          url: `${this.MinecraftURL}/${encodeURIComponent(ip)}`
         }, (error, response, body) => {
           if (error)
             return reject(error);
