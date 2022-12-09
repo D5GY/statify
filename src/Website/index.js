@@ -9,9 +9,9 @@ const session = require('express-session');
 const crypto = require('crypto');
 
 app.use('html', ejs.renderFile);
-app.set('views', join(__dirname, 'pages'));
+app.set('views', join(__dirname, 'Pages'));
 app.set('view engine', 'ejs');
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'Public')));
 
 //Discord Auth
 require('./Utils/Auth/passport')(passport);
@@ -30,7 +30,7 @@ app.get('/logout', require('./Utils/Auth/Logout'));
 
 // Routes
 app.get('/', require('./Utils/Routes/home'));
-app.get('/games', require('./Utils/Routes/games'));
+//app.get('/games', require('./Utils/Routes/games'));
 
 app.get('/login', require('./Utils/Routes/login'));
 app.get('/dashboard/index', require('./Utils/Routes/Dashboard/'));
