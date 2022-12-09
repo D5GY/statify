@@ -29,7 +29,8 @@ app.get('/api/login', require('./Utils/Auth/Login'));
 app.get('/logout', require('./Utils/Auth/Logout'));
 
 // Routes
-app.get('/', require('./Utils/Routes/home'));app.get('/games', require('./Utils/Routes/games'));
+app.get('/', require('./Utils/Routes/home'));
+app.get('/games', require('./Utils/Routes/games'));
 
 app.get('/login', require('./Utils/Routes/login'));
 app.get('/dashboard/index', require('./Utils/Routes/Dashboard/'));
