@@ -6,8 +6,9 @@
   .navbar-toggler {
     color: $blue;
     border: solid 2px $blue;
-    .navbar-toggler-icon { 
-      color: $blue;
+    .nav-icon-img {
+      height: 20px;
+      width: 20px;
     }
   }
   .navbar-nav {
@@ -56,7 +57,7 @@
     .icon {
       color: $fontColor;
       background: inherit;
-      float: right;
+      float: left;
       margin-top: 5px;
     }
   }
