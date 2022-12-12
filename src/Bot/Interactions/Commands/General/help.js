@@ -11,7 +11,8 @@ const helpMenu = new ActionRowBuilder().addComponents(
       { label: 'Splitgate', description: 'Shows how to use the Splitgate command', value: 'spg' },
       { label: 'Apex Legends', description: 'Shows how to use the Apex Legends command', value: 'apl' },
       { label: 'Csgo', description: 'Shows how to use the CSGO command', value: 'csg' },
-      { label: 'Clash Of Clans', description: 'Shows how to use the Clash Of Clans command', value: 'coc' }
+      { label: 'Minecraft', description: 'Shows how to use the Minecraft command', value: 'mnc' },
+      { label: 'Fortnite', description: 'Shows how to use the Fortnite command', value: 'frn' }
     ])
 );
 
