@@ -1,11 +1,12 @@
 {
   "name": "statify",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "statify multiple game stats lookup discord bot & website",
   "main": "src/index.js",
   "scripts": {
     "website": "cd src/Website && node index.js",
-    "bot": "cd src/Bot && node index.js"
+    "bot": "cd src/Bot && node index.js",
+    "api": "cd src/API && node index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,9 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "fnapicom": "^1.1.0",
+    "moment": "^2.29.4",
+    "mysql2": "^2.3.3",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "r6s-stats-api": "^1.2.0",
