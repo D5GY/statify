@@ -1,0 +1,32 @@
+#games {
+  height: 975px;
+
+  .section-header {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+
+  .games-items {
+    .accordion {
+      .accordion-item {
+
+        .accordion-body {
+          hr {
+            background: $blue;
+            height: 2px;
+          }
+        }
+        border: 2px solid $blue;
+
+        .accordion-header {
+          .accordion-button {
+            background: $test;
+            color: $fontColor;
+            border:none;
+          }
+        }
+      }
+    }
+  }
+}

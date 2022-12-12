@@ -13,47 +13,33 @@ app.set('views', join(__dirname, 'pages'));
 app.set('view engine', 'ejs');
 app.use(express.static(join(__dirname, 'public')));
 
-//Discord Auth
+// Discord Auth
 require('./Utils/Auth/passport')(passport);
-
-app.use(session({
-  secret: crypto.randomBytes(20).toString('hex'),
-  resave: true,
-  saveUninitialized: true
-}));
-
+app.use(session({ secret: crypto.randomBytes(20).toString('hex'), resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Login & Logout
 app.get('/api/login', require('./Utils/Auth/Login'));
 app.get('/logout', require('./Utils/Auth/Logout'));
 
 // Routes
-app.get('/', require('./Utils/Routes/home'));app.get('/games', require('./Utils/Routes/games'));
+app.get('/', require('./Utils/Routes/home'));
+app.get('/commands', require('./Utils/Routes/commands'));
 
+// Dashboard Routes
 app.get('/login', require('./Utils/Routes/login'));
 app.get('/dashboard/index', require('./Utils/Routes/Dashboard/'));
+app.get('/admin', require('./Utils/Routes/Dashboard/dash'));
 
 // Redirects
-app.get('/discord', (req, res) => {
-  res.redirect(WEBSITE.URLs.DISCORD_INVITE);
-});
+app.get('/discord', (req, res) => { res.redirect(WEBSITE.URLs.DISCORD_INVITE) });
+app.get('/invite', (req, res) => { res.redirect(WEBSITE.URLs.BOT_INVITE) });
+app.get('/vote', (req, res) => {res.redirect(WEBSITE.URLs.TOP_GG) });
+app.get('/github', (req, res) => { res.redirect(WEBSITE.URLs.GITHUB) });
 
-app.get('/invite', (req, res) => {
-  res.redirect(WEBSITE.URLs.BOT_INVITE);
-});
-
-app.get('/vote', (req, res) => {
-  res.redirect(WEBSITE.URLs.TOP_GG);
-});
-
-app.get('/github', (req, res) => {
-  res.redirect(WEBSITE.URLs.GITHUB);
-});
-
+// Error
 app.get('*', require('./Utils/Routes/error'));
 
 // Start Website
-app.listen(WEBSITE.PORT, ()=> {
-  Logger.GREEN('website', `online on port ${WEBSITE.PORT}`);
-});
+app.listen(WEBSITE.PORT, () => { Logger.GREEN('website', `online on port ${WEBSITE.PORT}`) });
