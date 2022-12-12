@@ -1,4 +1,5 @@
-const { EmbedBuilder, Guild } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
+const moment = require('moment');
 const statify = require('../../statify');
 module.exports = {
   /**
@@ -62,28 +63,28 @@ module.exports = {
   },
   MESSAGE_UPDATE: (oldMessage, newMessage, statify) => {
     return new EmbedBuilder()
-    .setColor(statify.Colors.BLUE)
-    .setTitle('Edited Message')
-    .setDescription(`[Jump To Message](${oldMessage.url})`)
-    .setFields(
-      { name: 'Member', value: `User: ${oldMessage.author} \n ID: ${oldMessage.author.id}` },
-      { name: 'Old Message Content', value: `${oldMessage}`},
-      { name: 'New Message Content', value: `${newMessage}`}
-    )
-    .setThumbnail(oldMessage.author.avatarURL() ?? statify.user.avatarURL())
-    .setTimestamp()
+      .setColor(statify.Colors.BLUE)
+      .setTitle('Edited Message')
+      .setDescription(`[Jump To Message](${oldMessage.url})`)
+      .setFields(
+        { name: 'Member', value: `User: ${oldMessage.author} \n ID: ${oldMessage.author.id}` },
+        { name: 'Old Message Content', value: `${oldMessage}` },
+        { name: 'New Message Content', value: `${newMessage}` }
+      )
+      .setThumbnail(oldMessage.author.avatarURL() ?? statify.user.avatarURL())
+      .setTimestamp()
   },
   MESSAGE_DELETE: (message, statify) => {
     return new EmbedBuilder()
-    .setColor(statify.Colors.BLUE)
-    .setTitle('Deleted Message')
-    .setDescription(`Channel: ${message.channel}`)
-    .setFields(
-      { name: 'Member', value: `User: ${message.author} \n ID: ${message.author.id}`},
-      { name: 'Delete Message Content', value: `${message.content}`},
-    )
-    .setThumbnail(message.author.avatarURL() ?? statify.user.avatarURL())
-    .setTimestamp()
+      .setColor(statify.Colors.BLUE)
+      .setTitle('Deleted Message')
+      .setDescription(`Channel: ${message.channel}`)
+      .setFields(
+        { name: 'Member', value: `User: ${message.author} \n ID: ${message.author.id}` },
+        { name: 'Delete Message Content', value: `${message.content}` },
+      )
+      .setThumbnail(message.author.avatarURL() ?? statify.user.avatarURL())
+      .setTimestamp()
   },
   rainbow_six_siege_general: (data, statify) => {
     return new EmbedBuilder()
@@ -392,17 +393,49 @@ module.exports = {
       description = data.description.text;
     } else description = 'Unknown';
     return new EmbedBuilder()
-    .setColor(statify.Colors.BLUE)
-    .setTitle(`Lookup for ${ip}`)
-    .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-    .setThumbnail(data.favicon)
-    .setFields(
-      { name: 'Online', value: `${data.online}`, inline: true },
-      { name: 'Source', value: `${data.source}`, inline: true },
-      { name: 'Response Time', value: `${data.took}`, inline: true },
-      { name: 'Players', value: `Online: ${data.players.online}\nMax: ${data.players.max}`, inline: true },
-      { name: 'Version', value: `${data.version.name}`, inline: true },
-      { name: 'Description', value: `${description}` }
-    );
+      .setColor(statify.Colors.BLUE)
+      .setTitle(`Lookup for ${ip}`)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setThumbnail(data.favicon)
+      .setFields(
+        { name: 'Online', value: `${data.online}`, inline: true },
+        { name: 'Source', value: `${data.source}`, inline: true },
+        { name: 'Response Time', value: `${data.took}`, inline: true },
+        { name: 'Players', value: `Online: ${data.players.online}\nMax: ${data.players.max}`, inline: true },
+        { name: 'Version', value: `${data.version.name}`, inline: true },
+        { name: 'Description', value: `${description}` }
+      );
+  },
+  FORTNITE: {
+    NOT_FOUND: (username, platform, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} ${username} not found on ${platform}`);
+    },
+    STATS_PRIVATE: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} stats for ${username} could not be fetched due to their account settings being to private!`);
+    },
+    STATS: (data, statify) => {
+      const overall = data.stats.all.overall
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.account.name}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: data.image ?? statify.user.avatarURL() })
+        .setFields(
+          { name: 'Wins', value: `${overall.wins}`, inline: true },
+          { name: 'TOP 3', value: `${overall.top3}`, inline: true },
+          { name: 'TOP 10', value: `${overall.top10}`, inline: true },
+          { name: 'Kills', value: `${overall.kills}`, inline: true },
+          { name: 'Deaths', value: `${overall.deaths}`, inline: true },
+          { name: 'K/D', value: `${overall.kd}`, inline: true },
+          { name: 'Score', value: `${overall.score}`, inline: true },
+          { name: 'Players Outlived', value: `${overall.playersOutlived}`, inline: true },
+          { name: 'Time Played', value: `${parseFloat(moment.duration(overall.minutesPlayed, 'minutes').asHours()).toFixed(2)} Hours`, inline: true }
+        )
+    }
   }
 }
