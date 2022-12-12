@@ -41,6 +41,16 @@ module.exports = {
       await interaction.editReply({
         embeds: [statify.response.embed.HELP.clash_of_clans(statify)]
       });
+    } else if (selected == 'mnc') {
+      await interaction.deferUpdate()
+      await interaction.editReply({
+        embeds: [statify.response.embed.HELP.minecraft(statify)]
+      });
+    } else if (selected == 'frn') {
+      await interaction.deferUpdate()
+      await interaction.editReply({
+        embeds: [statify.response.embed.HELP.fortnite(statify)]
+      });
     }
   }
 }

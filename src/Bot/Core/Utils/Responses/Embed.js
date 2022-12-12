@@ -164,6 +164,24 @@ module.exports = {
           { name: 'Example', value: '/clash-of-clans `player-tag: #8J9RQGLUC`' }
         )
     },
+    minecraft: (statify) => {
+      return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setFields(
+        { name: 'Usage', value: '/minecraft `server:`' },
+        { name: 'Example', value: '/minecraft `server: mc.hypixel.net`' }
+      )
+    },
+    fortnite: (statify) => {
+      return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+      .setFields(
+        { name: 'Usage', value: '/fortnite `username:` `platform`' },
+        { name: 'Example', value: '/fortnite `username: Ninja` `platform: epic`' }
+      )
+    }
   },
   SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
     return new EmbedBuilder()
