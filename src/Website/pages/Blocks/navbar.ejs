@@ -9,6 +9,9 @@
                 <li class="nav-item"><a class="nav-link" href="/"><i class="fa-sharp fa-solid fa-house"></i> Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/commands"><i class="fa-solid fa-code"></i> Commands</a></li>
                 <li class="nav-item"><a class="nav-link" href="/vote"><i class="fa-solid fa-check-to-slot"></i> Vote</a></li>
+                <% if(user) { %>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/index"><i class="fa-solid fa-wrench"></i> Dashboard</a></li>
+                <% } %>
             </ul>
             <% if(user) { %>
                 <a href="/logout" class="nav-item btn btn-xl">Logout <i class="fa-solid fa-person-walking-arrow-right" style="background-color: inherit;"></i></a>
