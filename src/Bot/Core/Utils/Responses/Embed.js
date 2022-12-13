@@ -52,7 +52,7 @@ module.exports = {
   },
   GUILD_DELETE: (guild, statify) => {
     return new EmbedBuilder()
-      .setColor(statify.Colors.GREEN)
+      .setColor(statify.Colors.RED)
       .setTitle('statify Was Removed From A Server')
       .setFields(
         { name: 'Server', value: `Guild Name: ${guild.name} \n Guild ID: ${guild.id} \n Guild Members: ${guild.memberCount}` },
