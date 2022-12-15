@@ -8,6 +8,8 @@ const passport = require('passport');
 const session = require('express-session');
 const crypto = require('crypto');
 
+require('./API/index.js')(app);
+
 app.use('html', ejs.renderFile);
 app.set('views', join(__dirname, 'Pages'));
 app.set('view engine', 'ejs');
@@ -39,6 +41,8 @@ app.get('/github', (req, res) => { res.redirect(WEBSITE.URLs.GITHUB) });
 
 // Error
 app.get('*', require('./Utils/Routes/error'));
+
+// API Routes
 
 // Start Website
 app.listen(WEBSITE.PORT, () => { Logger.GREEN('website', `online on port ${WEBSITE.PORT}`) });
