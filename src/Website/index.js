@@ -42,7 +42,5 @@ app.get('/github', (req, res) => { res.redirect(WEBSITE.URLs.GITHUB) });
 // Error
 app.get('*', require('./Utils/Routes/error'));
 
-// API Routes
-
 // Start Website
 app.listen(WEBSITE.PORT, () => { Logger.GREEN('website', `online on port ${WEBSITE.PORT}`) });
