@@ -1,5 +1,8 @@
 module.exports = (app, HttpStatusCodes, logger, mysql, Config) => {
   app.post('/API/staff', async (req, res) => {
+    console.log(req)
+    console.log(req.body);
+    console.log(Object.keys(req.body).length);
     let api = req.headers['statify-api-key'];
     if (!api) {
       return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });

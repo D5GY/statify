@@ -8,7 +8,7 @@ module.exports = (passport) => {
   passport.use(new discordStrategy({
     clientID: Config.DEVELOPMENT_MODE ? Config.WEBSITE.AUTH.DEVELOPMENT.CLIENT_ID : Config.WEBSITE.AUTH.PRODUCTION.CLIENT_ID,
     clientSecret: Config.DEVELOPMENT_MODE ? Config.WEBSITE.AUTH.DEVELOPMENT.CLIENT_SECRET : Config.WEBSITE.AUTH.PRODUCTION.CLIENT_SECRET,
-    callbackURL: '/api/login',
+    callbackURL: '/auth/login',
     scope: Config.WEBSITE.AUTH.SCOPES
   }, (accessToken, refreshToken, profile, callback) => {
     loginWebhook.send({

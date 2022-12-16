@@ -10,7 +10,6 @@ const crypto = require('crypto');
 const { WebhookClient } = require('discord.js');
 const WebsiteWebhook = new WebhookClient({ id: WEBHOOKS.WEBSITE_LOGS.ID, token: WEBHOOKS.WEBSITE_LOGS.TOKEN });
 
-require('./API/index.js')(app);
 
 app.use('html', ejs.renderFile);
 app.set('views', join(__dirname, 'Pages'));
@@ -24,7 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Login & Logout
-app.get('/api/login', require('./Utils/Auth/Login'));
+app.get('/auth/login', require('./Utils/Auth/Login'));
 app.get('/logout', require('./Utils/Auth/Logout'));
 
 // Routes
@@ -52,7 +51,7 @@ app.listen(WEBSITE.PORT, () => {
       embeds: [{
         color: 0x417bd2,
         author: { name: 'statify Website' },
-        description: `Website & API online using proxy port ${WEBSITE.PORT}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`
+        description: `Website online using proxy port ${WEBSITE.PORT}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`
       }]
     });
   }
