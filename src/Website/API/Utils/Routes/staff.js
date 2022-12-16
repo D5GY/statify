@@ -5,7 +5,7 @@ module.exports = (app, HttpStatusCodes, logger, mysql, Config) => {
       return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
     } else if (api !== Config.API.KEY) {
       return res.json({ status: HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
-    } else if (Object.keys(req.body) == 0) {
+    } else if (Object.keys(req.body).length !== 3) {
       return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No valid JSON body was found' });
     }
     const body = JSON.parse(JSON.stringify(req.body));
