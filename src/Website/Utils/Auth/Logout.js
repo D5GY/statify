@@ -8,15 +8,15 @@ router.get('/logout', (req, res, next) => {
   logoutWebhook.send({
     embeds: [{
       color: 0x417bd2,
-      author: { name: 'statify login' },
+      author: { name: 'statify logout' },
       thumbnail: { url: discordImageURL('avatars', req.user.id, req.user.avatar) },
       description: `User: <@${req.user.id}>\nUser Tag: ${req.user.username}#${req.user.discriminator}\nID: ${req.user.id}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`
     }]
   });
   req.logout((err) => {
-    return next(err);
+    if (err) return next(err);
+    res.redirect('/');
   });
-  res.redirect('/');
 });
 
 module.exports = router;
