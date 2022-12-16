@@ -16,6 +16,7 @@ const HttpStatusCodes = { // https://developer.mozilla.org/en-US/docs/Web/HTTP/S
  * @param { app } app 
  */
 module.exports = (app) => {
+  Logger.GREEN('API', 'online');
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
