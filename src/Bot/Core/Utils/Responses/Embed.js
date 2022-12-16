@@ -11,6 +11,16 @@ module.exports = {
       .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
       .setDescription(error);
   },
+  /**
+   * @param { statify } statify
+  */
+  BOT_ONLINE: (statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: 'statify Bot' })
+      .setTitle(`Online in ${statify.guilds.cache.size} ${statify.guilds.cache.size == 1 ? 'Guild' : 'Guilds'}`)
+      .setDescription(`Bot: ${statify.user.tag}\nClient Ping: ${statify.ws.ping}\nInteraction Commands: ${statify.commandsCount}\nInteraction Modals: ${statify.modalsCount}\nInteraction Menus: ${statify.selectMenusCount}\nEvents: ${statify.eventsCount}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`)
+  },
   ping: (statify, ClientPing) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
