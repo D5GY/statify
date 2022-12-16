@@ -16,7 +16,7 @@ class Database {
   connect() {
     this._keepAlive = setInterval(() => {
       this.query("SELECT 1 + 1");
-    }, 36e+6);
+    }, 1.8e+6);
     return new Promise((resolve, reject) => {
       if (this.connected) return this.logger.YELLOW('API', 'database is already connected.');
       this._mysqlConnection.connect(error => {
