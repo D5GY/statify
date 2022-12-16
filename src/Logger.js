@@ -18,5 +18,5 @@ exports.Logger = {
   },
   MAGENTA: (type, ...string) => {
     console.log(magenta(`[statify ${type.toLowerCase()}] [${new Date().toDateString()}] - ${string}`));
-  },
+  }
 }
