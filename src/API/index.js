@@ -2,22 +2,14 @@ const express = require('express');
 const { Config } = require('../config');
 const { Logger } = require('../Logger');
 const app = express();
-const Database = require('./Utils/database');
-const mysql = new Database(Config.API.DATABASE, Logger);
-const HttpStatusCodes = { // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-  OK: 200,
-  CREATED: 201,
-  BAD_REQUEST: 400,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  INTERNAL_SERVER_ERROR: 500
-}
-
+const staff = require('./Utils/Routes/staff');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-require('./Utils/Routes/staff')(app, HttpStatusCodes, Logger, mysql, Config);
+app.get('/api/staff', staff.get);
+app.delete('/api/staff/:discordID', staff.delete)
+app.post('/api/staff', staff.post);
 
 app.listen(Config.API.PORT, () => {
   Logger.GREEN('API', 'Online');
