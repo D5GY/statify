@@ -18,7 +18,7 @@ exports.get = async (req, res) => {
     );
     res.json({ status: utils.HttpStatusCodes.OK, response: query });
   } catch (error) {
-    logger.RED('API', `MYSQL STAFF GET: ${error}`);
+    Logger.RED('API', `MYSQL STAFF GET: ${error}`);
     res.json({ status: utils.HttpStatusCodes.INTERNAL_SERVER_ERROR, error: error });
   }
 }
@@ -41,7 +41,7 @@ exports.delete = async (req, res) => {
       );
       res.json({ status: utils.HttpStatusCodes.OK, response: query });
     } catch (error) {
-      logger.RED('API', `MYSQL STAFF DELETE: ${error}`);
+      Logger.RED('API', `MYSQL STAFF DELETE: ${error}`);
       res.json({ status: utils.HttpStatusCodes.INTERNAL_SERVER_ERROR, error: error });
     }
 }
@@ -67,7 +67,7 @@ exports.post = async (req, res) => {
 
     res.json({ status: utils.HttpStatusCodes.CREATED, response: query });
   } catch (error) {
-    logger.RED('api', `STAFF POST MYSQL: ${error}`);
+    Logger.RED('api', `STAFF POST MYSQL: ${error}`);
     res.json({ status: utils.HttpStatusCodes.INTERNAL_SERVER_ERROR, error: error });
   }
 }
