@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Partials, Collection, WebhookClient, AllowedMentionsTypes } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Collection, WebhookClient } = require('discord.js');
 const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
