@@ -3,7 +3,6 @@ const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
 const utils = require('./Utils');
-const Utils = require('./Utils');
 const { GuildInvites, GuildMembers, GuildMessages, GuildPresences, Guilds, GuildWebhooks, MessageContent } = GatewayIntentBits;
 const { Channel, GuildMember, Message, User } = Partials;
 
