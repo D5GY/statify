@@ -11,7 +11,7 @@ module.exports = async (statify) => {
       statify.logger.RED('bot', error);
     }).then(() => {
       statify.logger.CYAN('bot', 'Interaction commands set (developer)');
-      statify.user.setPresence({ activities: [{ name: `Developerment | v${require('../../../package.json').version}`, type: ActivityType.Watching }]});
+      statify.user.setPresence({ activities: [{ name: `DEV: v${require('../../../package.json').version}`, type: ActivityType.Watching }]});
     });
   } else {
     statify.application.commands.set(statify.commandsData).catch((error) => {
