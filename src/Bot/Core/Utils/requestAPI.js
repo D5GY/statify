@@ -13,6 +13,10 @@ module.exports = class requestAPI {
       SplitgateURL: 'https://public-api.tracker.gg/v2/splitgate/standard/profile'
     }
     this.MinecraftURL = 'https://eu.mc-api.net/v3/server/ping';
+    this.BRAWL_STARS = {
+      URL: 'https://api.brawlstars.com/v1/players',
+      HEADER: { authorization: `Bearer ${API.BRAWL_STARS}` }
+    }
   }
   async ClashOfClans(username) {
     return new Promise((resolve, reject) => {
@@ -24,7 +28,7 @@ module.exports = class requestAPI {
           if (error)
             return reject(error);
           else resolve(body)
-        }); 
+        });
       } catch (error) {
         return reject(error);
       }
@@ -40,7 +44,7 @@ module.exports = class requestAPI {
           if (error)
             return reject(error);
           else resolve(body)
-        }); 
+        });
       } catch (error) {
         return reject(error);
       }
@@ -56,7 +60,7 @@ module.exports = class requestAPI {
           if (error)
             return reject(error);
           else resolve(body)
-        }); 
+        });
       } catch (error) {
         return reject(error);
       }
@@ -72,7 +76,7 @@ module.exports = class requestAPI {
           if (error)
             return reject(error);
           else resolve(body)
-        }); 
+        });
       } catch (error) {
         return reject(error);
       }
@@ -88,7 +92,7 @@ module.exports = class requestAPI {
           if (error)
             return reject(error);
           else resolve(body)
-        }); 
+        });
       } catch (error) {
         return reject(error);
       }
@@ -103,7 +107,23 @@ module.exports = class requestAPI {
           if (error)
             return reject(error);
           else resolve(body)
-        }); 
+        });
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+  async BrawlStars(username) {
+    return new Promise((resolve, reject) => {
+      try {
+        request.get({
+          url: `${this.BRAWL_STARS.URL}/${encodeURIComponent(username)}`,
+          headers: this.BRAWL_STARS.HEADER
+        }, (error, response, body) => {
+          if (error)
+            return reject(error);
+          else resolve(body)
+        });
       } catch (error) {
         return reject(error);
       }

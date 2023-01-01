@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, Embed } = require('discord.js');
 const moment = require('moment');
 const statify = require('../../statify');
 module.exports = {
@@ -463,6 +463,29 @@ module.exports = {
           { name: 'Score', value: `${overall.score}`, inline: true },
           { name: 'Players Outlived', value: `${overall.playersOutlived}`, inline: true },
           { name: 'Time Played', value: `${parseFloat(moment.duration(overall.minutesPlayed, 'minutes').asHours()).toFixed(2)} Hours`, inline: true }
+        )
+    }
+  },
+  BRAWL_STARS: {
+    NOT_FOUND: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found!`);
+    },
+    STATS: (data, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.name}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Level', value: `${data.expLevel}`, inline: true },
+          { name: 'Trophies', value: `${data.trophies}`, inline: true },
+          { name: 'Highest Trophies', value: `${data.highestTrophies}`, inline: true },
+          { name: 'Solo Victories', value: `${data.soloVictories}`, inline: true },
+          { name: 'Duo Victories', value: `${data.duoVictories}`, inline: true },
+          { name: '3vs3 Victories', value: `${data["3vs3Victories"]}`, inline: true },
+          { name: 'Highest Power Play Points', value: `${data.highestPowerPlayPoints}` },
         )
     }
   }
