@@ -1,6 +1,6 @@
 {
   "name": "statify",
-  "version": "2.1.2",
+  "version": "2.1.5",
   "description": "statify multiple game stats lookup discord bot & website",
   "main": "src/index.js",
   "scripts": {
