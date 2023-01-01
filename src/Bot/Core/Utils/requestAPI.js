@@ -17,6 +17,10 @@ module.exports = class requestAPI {
       URL: 'https://api.brawlstars.com/v1/players',
       HEADER: { authorization: `Bearer ${API.BRAWL_STARS}` }
     }
+    this.CLASH_ROYALE = {
+      URL: 'https://api.clashroyale.com/v1/players',
+      HEADER: { authorization: `Bearer ${API.CLASH_ROYALE}` }
+    }
   }
   async ClashOfClans(username) {
     return new Promise((resolve, reject) => {
@@ -119,6 +123,22 @@ module.exports = class requestAPI {
         request.get({
           url: `${this.BRAWL_STARS.URL}/${encodeURIComponent(username)}`,
           headers: this.BRAWL_STARS.HEADER
+        }, (error, response, body) => {
+          if (error)
+            return reject(error);
+          else resolve(body)
+        });
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+  async ClashRoyale(username) {
+    return new Promise((resolve, reject) => {
+      try {
+        request.get({
+          url: `${this.CLASH_ROYALE.URL}/${encodeURIComponent(username)}`,
+          headers: this.CLASH_ROYALE.HEADER
         }, (error, response, body) => {
           if (error)
             return reject(error);

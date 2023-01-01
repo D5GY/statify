@@ -488,5 +488,28 @@ module.exports = {
           { name: 'Highest Power Play Points', value: `${data.highestPowerPlayPoints}` },
         )
     }
+  },
+  CLASH_ROYALE: {
+    NOT_FOUND: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found!`);
+    },
+    STATS: (data, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.name}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Level', value: `${data.expLevel}`, inline: true },
+          { name: 'Trophies', value: `${data.trophies}`, inline: true },
+          { name: 'Highest Trophies', value: `${data.bestTrophies}`, inline: true },
+          { name: 'Wins', value: `${data.wins}`, inline: true },
+          { name: 'Losses', value: `${data.losses}`, inline: true },
+          { name: 'Battle Count', value: `${data.battleCount}`, inline: true },
+          { name: 'Three Crown Wins', value: `${data.threeCrownWins}` },
+        )
+    }
   }
 }
