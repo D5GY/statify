@@ -176,21 +176,21 @@ module.exports = {
     },
     minecraft: (statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setFields(
-        { name: 'Usage', value: '/minecraft `server:`' },
-        { name: 'Example', value: '/minecraft `server: mc.hypixel.net`' }
-      )
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/minecraft `server:`' },
+          { name: 'Example', value: '/minecraft `server: mc.hypixel.net`' }
+        )
     },
     fortnite: (statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setFields(
-        { name: 'Usage', value: '/fortnite `username:` `platform`' },
-        { name: 'Example', value: '/fortnite `username: Ninja` `platform: epic`' }
-      )
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/fortnite `username:` `platform`' },
+          { name: 'Example', value: '/fortnite `username: Ninja` `platform: epic`' }
+        )
     }
   },
   SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
@@ -510,6 +510,44 @@ module.exports = {
           { name: 'Battle Count', value: `${data.battleCount}`, inline: true },
           { name: 'Three Crown Wins', value: `${data.threeCrownWins}` },
         )
+    }
+  },
+  CALL_OF_DUTY: {
+    NOT_FOUND: (username, platform, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found on **${platform}**!`);
+    },
+    WARZONE: {
+      STATS: (data, username, statify) => {
+        const WZ = new EmbedBuilder()
+          .setColor(statify.Colors.BLUE)
+          .setTitle(`Lookup for ${username}`)
+          .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+          .setFooter({ text: 'All stats based of lifetime' });
+  
+        const stats = data.lifetime.all.properties;
+  
+        if (stats) {
+          if (stats.kills) WZ.addFields({ name: 'Kills', value: `${stats.kills}`, inline: true });
+          if (stats.deaths) WZ.addFields({ name: 'Deaths', value: `${stats.deaths}`, inline: true });
+          if (stats.kdRatio) WZ.addFields({ name: 'KD', value: `${parseFloat(`${stats.kdRatio}`).toFixed(2)}`, inline: true });
+          if (stats.bestKills) WZ.addFields({ name: 'Highest Kills', value: `${stats.bestKills}`, inline: true });
+          if (stats.headshots) WZ.addFields({ name: 'Headshots', value: `${stats.headshots}`, inline: true });
+          if (stats.assists) WZ.addFields({ name: 'Assists', value: `${stats.assists}`, inline: true });
+          if (stats.scorePerGame) WZ.addFields({ name: 'Score Per Game', value: `${parseFloat(`${stats.scorePerGame}`).toFixed(2)}`, inline: true });
+          if (stats.bestSPM) WZ.addFields({ name: 'Best Score Per Min', value: `${stats.bestSPM}`, inline: true });
+          if (stats.bestScore) WZ.addFields({ name: 'Best Score', value: `${stats.bestScore}`, inline: true });
+          if (stats.gamesPlayed) WZ.addFields({ name: 'Games Played', value: `${stats.gamesPlayed}`, inline: true });
+          if (stats.recordLongestWinStreak) WZ.addFields({ name: 'Best Win Streak', value: `${stats.recordLongestWinStreak}`, inline: true });
+          if (stats.recordXpInAMatch) WZ.addFields({ name: 'Best XP Match', value: `${stats.recordXpInAMatch}`, inline: true });
+        } else if (!segment) {
+          WZ.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+        }
+  
+        return WZ;
+      }
     }
   }
 }
