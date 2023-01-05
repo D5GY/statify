@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/D5GY/statify#readme",
   "dependencies": {
+    "call-of-duty-api": "^3.4.1",
     "chalk": "^4.1.2",
     "crypto": "^1.0.1",
     "discord.js": "^14.7.0",
