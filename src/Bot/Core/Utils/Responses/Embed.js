@@ -71,31 +71,6 @@ module.exports = {
       .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
       .setTimestamp()
   },
-  MESSAGE_UPDATE: (oldMessage, newMessage, statify) => {
-    return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle('Edited Message')
-      .setDescription(`[Jump To Message](${oldMessage.url})`)
-      .setFields(
-        { name: 'Member', value: `User: ${oldMessage.author} \n ID: ${oldMessage.author.id}` },
-        { name: 'Old Message Content', value: `${oldMessage}` },
-        { name: 'New Message Content', value: `${newMessage}` }
-      )
-      .setThumbnail(oldMessage.author.avatarURL() ?? statify.user.avatarURL())
-      .setTimestamp()
-  },
-  MESSAGE_DELETE: (message, statify) => {
-    return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle('Deleted Message')
-      .setDescription(`Channel: ${message.channel}`)
-      .setFields(
-        { name: 'Member', value: `User: ${message.author} \n ID: ${message.author.id}` },
-        { name: 'Delete Message Content', value: `${message.content}` },
-      )
-      .setThumbnail(message.author.avatarURL() ?? statify.user.avatarURL())
-      .setTimestamp()
-  },
   rainbow_six_siege_general: (data, statify) => {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
