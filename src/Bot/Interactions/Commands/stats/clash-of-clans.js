@@ -76,6 +76,9 @@ module.exports = {
       await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('clash of clans lookup', statify)
       });
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`[CLASH OF CLANS]: ${jsonData}`)]
+      });
       return statify.logger.YELLOW('bot', `[CLASH OF CLANS]: ${jsonData}`);
     }
     const townHallAttachment = new AttachmentBuilder(`Core/Utils/Images/Clash-Of-Clans/Home-Base/${jsonData.townHallLevel}.png`);

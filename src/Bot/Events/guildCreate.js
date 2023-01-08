@@ -8,6 +8,6 @@ module.exports = (guild) => {
   statify.webhooks.guildCreate.send({
     embeds: [statify.response.embed.GUILD_CREATE(guild, statify)]
   }).catch((error) => {
-    statify.emit('error', error);
+    statify.logger.RED('bot', error);
   });
 };

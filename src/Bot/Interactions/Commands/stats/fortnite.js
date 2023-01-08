@@ -47,7 +47,10 @@ module.exports = {
         embeds: [statify.response.embed.FORTNITE.STATS_PRIVATE(username, statify)]
       });
     } else if (data.status !== 200) {
-      statify.logger.RED('bot', `FORTNITE: ${error}`);
+      statify.logger.RED('bot', `FORTNITE: ${data}`);
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`FORTNITE: ${data}`)]
+      });
       await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('Fortnite lookup', statify)
       });

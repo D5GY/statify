@@ -39,6 +39,9 @@ module.exports = {
       });
     } else if (jsonData.errors && jsonData.errors[0]) {
       statify.logger.RED('bot', `APEX LEGENDS: ${jsonData.errors[0]}`);
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`[APEX LEGENDS]: ${jsonData.errors[0]}`)]
+      });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('apex legends lookup', statify)
       });

@@ -50,7 +50,10 @@ module.exports = {
             await interaction.editReply({
               content: statify.response.content.DEFAULT_ERROR('warzone lookup', statify)
             });
-            return statify.logger.YELLOW('bot', `[CALL OF DUTY::WARZONE]: ${data}`);
+            statify.webhooks.errorLogs.send({
+              embeds: [statify.response.embed.ERROR(`[CALL OF DUTY::WARZONE]: ${data.message}`)]
+            });
+            return statify.logger.YELLOW('bot', `[CALL OF DUTY::WARZONE]: ${data.message}`);
           }
         }
         interaction.editReply({
@@ -60,7 +63,10 @@ module.exports = {
         await interaction.editReply({
           content: statify.response.content.DEFAULT_ERROR('warzone lookup', statify)
         });
-        return statify.logger.RED('bot', `[CALL OF DUTY::WARZONE]: ${data}`);
+        statify.webhooks.errorLogs.send({
+          embeds: [statify.response.embed.ERROR(`[CALL OF DUTY::WARZONE]: ${data.message}`)]
+        });
+        return statify.logger.RED('bot', `[CALL OF DUTY::WARZONE]: ${data.message}`);
       }
     } else {
       await interaction.editReply({

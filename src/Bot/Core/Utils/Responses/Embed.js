@@ -9,7 +9,8 @@ module.exports = {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
       .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setDescription(error);
+      .setDescription(error)
+      .setTimestamp();
   },
   /**
    * @param { statify } statify

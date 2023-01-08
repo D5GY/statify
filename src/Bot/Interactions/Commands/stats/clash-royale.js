@@ -31,6 +31,9 @@ module.exports = {
       await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('clash royale lookup', statify)
       });
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`[CLASH ROYALE]: ${jsonData}`)]
+      });
       return statify.logger.YELLOW('bot', `[CLASH ROYAL]: ${jsonData}`);
     }
     await interaction.editReply({

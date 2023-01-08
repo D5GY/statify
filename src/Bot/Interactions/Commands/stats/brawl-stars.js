@@ -31,6 +31,9 @@ module.exports = {
       await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('brawl stars lookup', statify)
       });
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`[BRAWL STARS]: ${jsonData}`)]
+      });
       return statify.logger.YELLOW('bot', `[BRAWL STARS]: ${jsonData}`);
     }
     await interaction.editReply({

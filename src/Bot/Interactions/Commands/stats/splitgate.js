@@ -46,6 +46,9 @@ module.exports = {
       });
     } else if (jsonData.errors && jsonData.errors[0]) {
       statify.logger.RED('bot', `SPLITGATE: ${jsonData.errors[0]}`);
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`SPLITGATE: ${jsonData.errors[0]}`)]
+      });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('Splitgate lookup', statify)
       });
@@ -57,6 +60,5 @@ module.exports = {
 }
 
 function isSteamID(username) {
-  const steamIDRegex = new RegExp(/^\d+\.?\d*$/);
-  return steamIDRegex.test(username);
+  return new RegExp(/^\d+\.?\d*$/).test(username);
 }
