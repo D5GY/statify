@@ -10,6 +10,6 @@ module.exports = (member) => {
   statify.webhooks.guildMemberAdd.send({
     embeds: [statify.response.embed.GUILD_MEMBER_ADD(member, statify)]
   }).catch((error) => {
-    statify.emit('error', error);
+    statify.logger.RED('bot', error);
   });
 };
