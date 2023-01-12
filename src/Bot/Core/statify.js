@@ -3,14 +3,14 @@ const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
 const Utils = require('./Utils');
-const { GuildInvites, GuildMembers, GuildMessages, GuildPresences, Guilds, GuildWebhooks, MessageContent } = GatewayIntentBits;
+const { GuildInvites, GuildMembers, GuildMessages, Guilds, GuildWebhooks, MessageContent } = GatewayIntentBits;
 const { Channel, GuildMember, Message, User } = Partials;
 
 
 class statify extends Client {
   constructor() {
     super({
-      intents: [ GuildInvites, GuildMembers, GuildMessages, GuildMessages, GuildPresences, GuildWebhooks, Guilds, MessageContent ],
+      intents: [ GuildInvites, GuildMembers, GuildMessages, GuildMessages, GuildWebhooks, Guilds, MessageContent ],
       partials: [ Channel, GuildMember, Message, User ],
       presence: { afk: false, status: 'online' }
     });
