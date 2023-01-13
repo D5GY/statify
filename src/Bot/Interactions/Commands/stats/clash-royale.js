@@ -26,6 +26,14 @@ module.exports = {
       return await interaction.editReply({
         embeds: [statify.response.embed.CLASH_ROYALE.NOT_FOUND(username, statify)]
       });
+    } else if (jsonData.reason == 'accessDenied') {
+      await interaction.editReply({
+        content: statify.response.content.DEFAULT_ERROR('clash royale lookup', statify)
+      });
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR('CLASH ROYALE: Invalid authorization', statify)]
+      });
+      return statify.logger.RED('bot', 'CLASH ROYALE: Invalid authorization');
     }
     if (!jsonData) {
       await interaction.editReply({
