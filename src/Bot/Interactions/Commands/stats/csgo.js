@@ -31,10 +31,14 @@ module.exports = {
       return await interaction.editReply({
         embeds: [statify.response.embed.CSGO.NOT_FOUND(username, statify)]
       });
+    } else if (jsonData.errors && jsonData.errors[0].code.includes('Private')) {
+      return await interaction.editReply({
+        embeds: [statify.response.embed.CSGO.PRIVATE(statify)]
+      });
     } else if (jsonData.errors && jsonData.errors[0]) {
-      statify.logger.RED('bot', `CSGO: ${jsonData.errors[0]}`);
+      statify.logger.RED('bot', `CSGO: ${jsonData}`);
       statify.webhooks.errorLogs.send({
-        embeds: [statify.response.embed.ERROR(`[CSGO]: ${jsonData.errors[0]}`, statify)]
+        embeds: [statify.response.embed.ERROR(`[CSGO]: ${jsonData.errors[0].code}`, statify)]
       });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('csgo lookup', statify)

@@ -327,6 +327,12 @@ module.exports = {
         .setColor(statify.Colors.RED)
         .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
         .setDescription(`${statify.Emojis.ICON_RED} please provide a steam user-id to lookup.`);
+    },
+    PRIVATE: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.YELLOW)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_WHITE} The player either hasn't played CSGO or their profile is private.`);
     }
   },
   DIVISION_2: {
