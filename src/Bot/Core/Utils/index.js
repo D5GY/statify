@@ -4,6 +4,7 @@ class Utils {
     this.content = require('./Responses/Content');
     this.requestAPI = require('./requestAPI');
     this.statifyAPI = require('./statifyAPI');
+    this.Functions = require('./Functions');
   }
 }
 module.exports = new Utils;

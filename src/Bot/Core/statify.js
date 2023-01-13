@@ -36,6 +36,7 @@ class statify extends Client {
     this.response = { content: Utils.content, embed: Utils.embeds };
     this.requestAPI = new Utils.requestAPI(this.config.BOT.API_KEYS);
     this.statifyAPI = new Utils.statifyAPI(this.config.API.KEY);
+    this.Functions = new Utils.Functions();
 
     this.webhooks = {
       suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN }),
