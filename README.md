@@ -1,4 +1,4 @@
-# statify
+# statify Discord Bot, Website & API
 ![statify Logo](/src/Website/public/images/statify_logo.png)
 
 ## URLs
