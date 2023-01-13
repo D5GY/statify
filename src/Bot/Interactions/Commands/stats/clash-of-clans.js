@@ -71,6 +71,14 @@ module.exports = {
       return await interaction.editReply({
         embeds: [statify.response.embed.CLASH_OF_CLANS.NOT_FOUND(username, statify)]
       });
+    } else if (jsonData.reason == 'accessDenied') {
+      await interaction.editReply({
+        content: statify.response.content.DEFAULT_ERROR('clash of clans lookup', statify)
+      });
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR('CLASH OF CLANS: Invalid authorization', statify)]
+      });
+      return statify.logger.RED('bot', 'CLASH OF CLANS: Invalid authorization');
     }
     if (!jsonData) {
       await interaction.editReply({
@@ -81,8 +89,8 @@ module.exports = {
       });
       return statify.logger.YELLOW('bot', `[CLASH OF CLANS]: ${jsonData}`);
     }
-    const townHallAttachment = new AttachmentBuilder(`Core/Utils/Images/Clash-Of-Clans/Home-Base/${jsonData.townHallLevel}.png`);
-    const builderBaseAttachment = new AttachmentBuilder(`Core/Utils/Images/Clash-Of-Clans/Builder-Base/${jsonData.builderHallLevel}.png`);
+    const townHallAttachment = new AttachmentBuilder(`${__dirname}/../../../Core/Utils/Images/Clash-Of-Clans/Home-Base/${jsonData.townHallLevel}.png`);
+    const builderBaseAttachment = new AttachmentBuilder(`${__dirname}/../../../Core/Utils/Images/Clash-Of-Clans/Builder-Base/${jsonData.builderHallLevel}.png`);
     await interaction.editReply({
       embeds: [statify.response.embed.CLASH_OF_CLANS.HOME_BASE(jsonData, statify)],
       components: [buttons],
