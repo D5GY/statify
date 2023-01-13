@@ -26,6 +26,14 @@ module.exports = {
       return await interaction.editReply({
         embeds: [statify.response.embed.BRAWL_STARS.NOT_FOUND(username, statify)]
       });
+    } else if (jsonData.reason == 'accessDenied') {
+      await interaction.editReply({
+        content: statify.response.content.DEFAULT_ERROR('brawl stars lookup', statify)
+      });
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR('BRAWL STARS: Invalid authorization', statify)]
+      });
+      return statify.logger.RED('bot', 'BRAWL STARS: Invalid authorization');
     }
     if (!jsonData) {
       await interaction.editReply({
