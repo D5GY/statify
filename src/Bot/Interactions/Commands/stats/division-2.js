@@ -40,7 +40,7 @@ module.exports = {
     } else if (jsonData.errors && jsonData.errors[0]) {
       statify.logger.RED('bot', `DIVISION 2: ${jsonData.errors[0]}`);
       statify.webhooks.errorLogs.send({
-        embeds: [statify.response.embed.ERROR(`[DIVISION]: ${jsonData.errors[0]}`)]
+        embeds: [statify.response.embed.ERROR(`[DIVISION]: ${jsonData.errors[0]}`, statify)]
       });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('The Division 2 lookup', statify)

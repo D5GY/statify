@@ -32,7 +32,7 @@ module.exports = {
         content: statify.response.content.DEFAULT_ERROR('brawl stars lookup', statify)
       });
       statify.webhooks.errorLogs.send({
-        embeds: [statify.response.embed.ERROR(`[BRAWL STARS]: ${jsonData}`)]
+        embeds: [statify.response.embed.ERROR(`[BRAWL STARS]: ${jsonData}`, statify)]
       });
       return statify.logger.YELLOW('bot', `[BRAWL STARS]: ${jsonData}`);
     }

@@ -49,7 +49,7 @@ module.exports = {
     } else if (data.status !== 200) {
       statify.logger.RED('bot', `FORTNITE: ${data}`);
       statify.webhooks.errorLogs.send({
-        embeds: [statify.response.embed.ERROR(`FORTNITE: ${data}`)]
+        embeds: [statify.response.embed.ERROR(`FORTNITE: ${data}`, statify)]
       });
       await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('Fortnite lookup', statify)

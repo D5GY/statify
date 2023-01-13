@@ -77,7 +77,7 @@ module.exports = {
         content: statify.response.content.DEFAULT_ERROR('clash of clans lookup', statify)
       });
       statify.webhooks.errorLogs.send({
-        embeds: [statify.response.embed.ERROR(`[CLASH OF CLANS]: ${jsonData}`)]
+        embeds: [statify.response.embed.ERROR(`[CLASH OF CLANS]: ${jsonData}`, statify)]
       });
       return statify.logger.YELLOW('bot', `[CLASH OF CLANS]: ${jsonData}`);
     }

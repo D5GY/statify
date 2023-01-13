@@ -47,7 +47,7 @@ module.exports = {
     } else if (jsonData.errors && jsonData.errors[0]) {
       statify.logger.RED('bot', `SPLITGATE: ${jsonData.errors[0]}`);
       statify.webhooks.errorLogs.send({
-        embeds: [statify.response.embed.ERROR(`SPLITGATE: ${jsonData.errors[0]}`)]
+        embeds: [statify.response.embed.ERROR(`SPLITGATE: ${jsonData.errors[0]}`, statify)]
       });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('Splitgate lookup', statify)
