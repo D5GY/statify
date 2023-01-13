@@ -321,6 +321,12 @@ module.exports = {
       }
 
       return csgoStats;
+    },
+    STEAM_ID: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} please provide a steam user-id to lookup.`);
     }
   },
   DIVISION_2: {
