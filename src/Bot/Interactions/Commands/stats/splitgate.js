@@ -31,7 +31,7 @@ module.exports = {
     const username = await interaction.options.getString('username');
     const platform = await interaction.options.getString('platform');
 
-    if (platform == 'steam' && !isSteamID(username)) {
+    if (platform == 'steam' && !statify.Functions.isSteamID(username)) {
       return await interaction.editReply({
         embeds: [statify.response.embed.SPLITGATE.STEAM_ID(statify)]
       });
@@ -57,8 +57,4 @@ module.exports = {
       embeds: [statify.response.embed.SPLITGATE.STATS(jsonData, statify)]
     });
   }
-}
-
-function isSteamID(username) {
-  return new RegExp(/^\d+\.?\d*$/).test(username);
 }
