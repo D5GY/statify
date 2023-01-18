@@ -62,6 +62,7 @@ module.exports = {
       )
       .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
       .setTimestamp()
+      .setFooter({ text: `Guild Count: ${statify.guilds.cache.size}` });
   },
   GUILD_DELETE: (guild, statify) => {
     return new EmbedBuilder()
@@ -73,6 +74,7 @@ module.exports = {
       )
       .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
       .setTimestamp()
+      .setFooter({ text: `Guild Count: ${statify.guilds.cache.size}` });
   },
   rainbow_six_siege_general: (data, statify) => {
     return new EmbedBuilder()
