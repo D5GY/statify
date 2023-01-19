@@ -37,7 +37,6 @@ module.exports = {
         { name: 'Account Creation Date', value: `<t:${Math.floor(member.user.createdTimestamp / 1000)}:F> (<t:${Math.floor(member.user.createdTimestamp / 1000)}:R>)`, inline: false }
       )
       .setThumbnail(member.user.avatarURL() ?? statify.user.avatarURL())
-      .setFooter(`statify is now in ${statify.guilds.cache.size} guilds`)
       .setTimestamp()
   },
   GUILD_MEMBER_REMOVE: (member, statify) => {
@@ -49,7 +48,6 @@ module.exports = {
         { name: 'Join Date', value: `<t:${Math.floor(member.joinedTimestamp / 1000)}:F> (<t:${Math.floor(member.joinedTimestamp / 1000)}:R>)`, inline: false }
       )
       .setThumbnail(member.user.avatarURL() ?? statify.user.avatarURL())
-      .setFooter(`statify is now in ${statify.guilds.cache.size} guilds`)
       .setTimestamp()
   },
   GUILD_CREATE: (guild, statify) => {
