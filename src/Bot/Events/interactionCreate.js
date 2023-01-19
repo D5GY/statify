@@ -10,6 +10,11 @@ module.exports = async (interaction) => {
     content: 'This bot is in developer only mode!'
   });
 
+  const data = await statify.statifyAPI.GET_GUILD(interaction.guild.id);
+  if (data.response.length == 0) {
+    statify.statifyAPI.POST_CREATE_GUILD(interaction.guild.id);
+  };
+
   if (interaction.isChatInputCommand()) {
     const interactionExecuted = await statify.commands.get(interaction.commandName);
     if (!interactionExecuted) {
@@ -20,6 +25,7 @@ module.exports = async (interaction) => {
       });
     }
     try {
+      statify.statifyAPI.INCREASE_CMD_COUNT(interaction.guild.id);
       await interactionExecuted.execute(interaction, statify);
     } catch (error) {
       statify.logger.RED('bot', `INTERACTION: failed to execute ${interactionExecuted}\n${error}`);
