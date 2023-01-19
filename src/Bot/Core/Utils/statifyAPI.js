@@ -2,8 +2,7 @@ const request = require('request');
 
 module.exports = class statifyAPI {
   constructor(APIKey) {
-    // this.URL = 'https://statify.cc/api',
-    this.URL = 'http://localhost:3001/api',
+    this.URL = 'https://statify.cc/api',
       this.headers = { "statify-api-key": APIKey }
   }
   POST_SUGGEST(suggestion, platform, interaction, webhookID) {
