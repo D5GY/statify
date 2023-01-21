@@ -3,6 +3,8 @@ const { Config } = require('../config');
 const { Logger } = require('../Logger');
 const app = express();
 const { WebhookClient } = require('discord.js');
+const Database = require('./Utils/database');
+const mysql = new Database(Config.API.DATABASE, Logger);
 const apiWebhook = new WebhookClient({ id: Config.WEBHOOKS.API_LOGS.ID, token: Config.WEBHOOKS.API_LOGS.TOKEN });
 const apiError = new WebhookClient({ id: Config.WEBHOOKS.API_ERRORS.ID, token: Config.WEBHOOKS.API_ERRORS.TOKEN });
 const sqlLog = new WebhookClient({ id: Config.WEBHOOKS.SQL_LOGS.ID, token: Config.WEBHOOKS.SQL_LOGS.TOKEN });
@@ -33,4 +35,9 @@ app.listen(Config.API.PORT, () => {
       description: `API online using proxy port ${Config.API.PORT}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`
     }]
   });
+  mysql.connect();
 });
+
+setInterval(() => {
+  mysql.keepAlive();
+}, 1.8e+6);

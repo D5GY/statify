@@ -11,12 +11,8 @@ class Database {
     });
     this.connected = false;
     this.logger = logger;
-    this._keepAlive = null;
   }
   connect() {
-    this._keepAlive = setInterval(() => {
-      this.query("SELECT 1 + 1");
-    }, 1.8e+6);
     return new Promise((resolve, reject) => {
       if (this.connected) return this.logger.YELLOW('API', 'database is already connected.');
       this._mysqlConnection.connect(error => {
@@ -32,8 +28,6 @@ class Database {
     });
   }
   disconnect() {
-    clearInterval(this._keepAlive);
-    this._keepAlive = null;
     return new Promise((resolve, reject) => {
       if (!this.connected) return this.logger.YELLOW('API', 'database is already disconnected');
       this._mysqlConnection.destroy(error => {
@@ -63,6 +57,14 @@ class Database {
       } catch (error) {
         this.logger.RED('API', `DATABASE QUERY: ${error}`);
       }
+    });
+  }
+  keepAlive() {
+    this._mysqlConnection.ping(error => {
+      if (error) {
+        this.connected = false;
+        this.connect();
+      } else return;
     });
   }
 }
