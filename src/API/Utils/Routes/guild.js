@@ -7,7 +7,7 @@ const utils = require('../index');
 exports.create = async (req, res) => {
   let api = req.headers['statify-api-key'];
   if (!api) {
-    return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+    return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
   } else if (api !== Config.API.KEY) {
     return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
   } else if (Object.keys(req.body).length !== 1) {
@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
 exports.get_guild = async (req, res) => {
   let api = req.headers['statify-api-key'];
   if (!api) {
-    return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+    return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
   } else if (api !== Config.API.KEY) {
     return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
   } else if (Object.keys(req.body).length !== 1) {
@@ -56,7 +56,7 @@ exports.get_guild = async (req, res) => {
 exports.increase_cmd_count = async (req, res) => {
   let api = req.headers['statify-api-key'];
   if (!api) {
-    return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+    return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
   } else if (api !== Config.API.KEY) {
     return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
   } else if (Object.keys(req.body).length !== 1) {
@@ -81,7 +81,7 @@ exports.increase_cmd_count = async (req, res) => {
 exports.delete = async (req, res) => {
   let api = req.headers['statify-api-key'];
   if (!api) {
-    return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+    return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
   } else if (api !== Config.API.KEY) {
     return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
   } else if (Object.keys(req.body).length !== 1) {

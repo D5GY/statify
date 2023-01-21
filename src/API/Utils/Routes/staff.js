@@ -6,7 +6,7 @@ const utils = require('../index');
 exports.get = async (req, res) => {
   let api = req.headers['statify-api-key'];
   if (!api) {
-    return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+    return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
   } else if (api !== Config.API.KEY) {
     return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
   }
@@ -26,7 +26,7 @@ exports.delete = async (req, res) => {
   let api = req.headers['statify-api-key'];
     let ID = req.params.discordID;
     if (!api) {
-      return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+      return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
     } else if (api !== Config.API.KEY) {
       return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
     } else if (!ID) {
@@ -48,7 +48,7 @@ exports.delete = async (req, res) => {
 exports.post = async (req, res) => {
   let api = req.headers['statify-api-key'];
   if (!api) {
-    return res.json({ status: utils.HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
+    return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'No API Key provided' });
   } else if (api !== Config.API.KEY) {
     return res.json({ status: utils.HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
   } else if (Object.keys(req.body).length !== 3) {
