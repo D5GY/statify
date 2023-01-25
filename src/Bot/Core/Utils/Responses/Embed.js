@@ -517,22 +517,22 @@ module.exports = {
           .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
           .setFooter({ text: 'All stats based of lifetime' });
   
-        const stats = data.lifetime.all.properties;
+        const stats = data.lifetime.mode.br.properties;
   
         if (stats) {
-          if (stats.kills) WZ.addFields({ name: 'Kills', value: `${stats.kills}`, inline: true });
-          if (stats.deaths) WZ.addFields({ name: 'Deaths', value: `${stats.deaths}`, inline: true });
-          if (stats.kdRatio) WZ.addFields({ name: 'KD', value: `${parseFloat(`${stats.kdRatio}`).toFixed(2)}`, inline: true });
-          if (stats.bestKills) WZ.addFields({ name: 'Highest Kills', value: `${stats.bestKills}`, inline: true });
-          if (stats.headshots) WZ.addFields({ name: 'Headshots', value: `${stats.headshots}`, inline: true });
-          if (stats.assists) WZ.addFields({ name: 'Assists', value: `${stats.assists}`, inline: true });
-          if (stats.scorePerGame) WZ.addFields({ name: 'Score Per Game', value: `${parseFloat(`${stats.scorePerGame}`).toFixed(2)}`, inline: true });
-          if (stats.bestSPM) WZ.addFields({ name: 'Best Score Per Min', value: `${stats.bestSPM}`, inline: true });
-          if (stats.bestScore) WZ.addFields({ name: 'Best Score', value: `${stats.bestScore}`, inline: true });
-          if (stats.gamesPlayed) WZ.addFields({ name: 'Games Played', value: `${stats.gamesPlayed}`, inline: true });
-          if (stats.recordLongestWinStreak) WZ.addFields({ name: 'Best Win Streak', value: `${stats.recordLongestWinStreak}`, inline: true });
-          if (stats.recordXpInAMatch) WZ.addFields({ name: 'Best XP Match', value: `${stats.recordXpInAMatch}`, inline: true });
-        } else if (!segment) {
+          WZ.addFields({ name: 'Kills', value: `${stats.kills}`, inline: true });
+          WZ.addFields({ name: 'Deaths', value: `${stats.deaths}`, inline: true });
+          WZ.addFields({ name: 'Downs', value: `${stats.downs}`, inline: true });
+          WZ.addFields({ name: 'KD', value: `${parseFloat(`${stats.kdRatio}`).toFixed(2)}`, inline: true });
+          WZ.addFields({ name: 'Revives', value: `${stats.revives}`, inline: true });
+          WZ.addFields({ name: 'Contracts', value: `${stats.contracts}`, inline: true });
+          WZ.addFields({ name: 'Time Played', value: `${parseFloat(moment.duration(stats.timePlayed, 'minutes').asHours()).toFixed(2)} Hours`, inline: true });
+          WZ.addFields({ name: 'Score', value: `${stats.score}`, inline: true });
+          WZ.addFields({ name: 'Score Per Min', value: `${parseFloat(`${stats.scorePerMinute}`).toFixed(2)}`, inline: true });
+          WZ.addFields({ name: 'Wins', value: `${stats.wins}`, inline: true });
+          WZ.addFields({ name: 'Top 5', value: `${stats.topFive}`, inline: true });
+          WZ.addFields({ name: 'Top 10', value: `${stats.topTen}`, inline: true });
+        } else if (!stats) {
           WZ.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
         }
   
