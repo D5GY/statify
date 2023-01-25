@@ -1,0 +1,13 @@
+#status {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 92.8vh;
+
+  .card {
+    border-radius: 0px;
+    outline: none;
+    border: none;
+    border: solid 1px $blue;
+  }
+}

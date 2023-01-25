@@ -1,0 +1,259 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: $background;
+  border-right: solid 2px $blue;
+  padding: 6px 14px;
+  z-index: 100;
+  transition: all 0.5s ease;
+
+  &.open {
+    width: 250px;
+
+    li {
+      a {
+        background: $background;
+      }
+    }
+
+    .logo-details .icon,
+    .logo-details .logo_name {
+      opacity: 1;
+    }
+
+    .logo-details #btn {
+      text-align: right;
+    }
+
+    li .tooltip {
+      display: none;
+    }
+
+    li a .links_name {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .logo-details {
+    height: 66px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    #btn {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      font-size: 22px;
+      transition: all 0.4s ease;
+      font-size: 23px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+  }
+
+  .icon {
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+
+  .logo_name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.5s ease;
+    margin-left: 8px;
+  }
+
+  i {
+    color: #fff;
+    height: 60px;
+    min-width: 50px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+  }
+
+  .nav-list {
+    margin-top: 50px;
+    height: 100%;
+  }
+
+  li {
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+    margin-left: -34px;
+
+    i {
+      height: 50px;
+      line-height: 50px;
+      font-size: 24px;
+      border-radius: 0px;
+    }
+
+    a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      border-radius: 0px;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      background: $background;
+
+      &:hover {
+        background: $background;
+      }
+
+      &:hover .links_name,
+      &:hover i {
+        transition: all 0.5s ease;
+        color: $blue;
+      }
+
+      .links_name {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 400;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s;
+      }
+    }
+
+    .tooltip {
+      position: absolute;
+      top: -20px;
+      left: calc(100% + 24px);
+      z-index: 3;
+      background: $background;
+      border: solid 2px $blue;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+      transition: 0s;
+    }
+
+    &:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transition: all 0.4s ease;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+#main-content {
+  position: relative;
+  background: $background;
+  min-height: 92.5vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+
+
+  .navbar-header {
+    height: 88px;
+    width: 100%;
+    border-bottom: solid 2px $blue;
+
+    h3 {
+      padding: 25px;
+    }
+  }
+
+  .overview {
+    .card {
+      border: solid 2px $blue;
+      border-radius: 2px;
+      background: $background;
+      padding: 20px;
+
+      .card-profile {
+        padding: 8px;
+      }
+
+      .card-body {
+
+        span,
+        h3 {
+          display: flex;
+          justify-content: space-evenly;
+        }
+
+        .number {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .information {
+
+    .guild,
+    .statify {
+      padding: 50px;
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  .customize {
+    .top {
+      padding: 50px;
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .colors {
+        input {
+          font-size: 15px;
+          color: #FFF;
+          font-weight: 400;
+          outline: none;
+          height: 50px;
+          width: 200px;
+          text-align: center;
+          border: none;
+          border-radius: 8px;
+          transition: all 0.5s ease;
+          background: $background;
+          border: solid 2px $blue;
+        }
+      }
+    }
+  }
+
+}
+
+.sidebar.open~#main-content {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+@media (max-width: 420px) {
+  .sidebar li .tooltip {
+    display: none;
+  }
+}

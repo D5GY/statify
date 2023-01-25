@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+    <link href="../public/plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/Images/statify/statify_logo.png" height="50" width="160" class="logo_name">
+      <i class='fa-solid fa-bars' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="/dashboard">
+          <i class='fa-solid fa-house'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="/dashboard/customize">
+          <i class='fa-solid fa-paintbrush'></i>
+          <span class="links_name">Customization</span>
+        </a>
+        <span class="tooltip">Customization</span>
+      </li>
+      <li>
+        <a href="/dashboard/information">
+          <i class='fa-solid fa-info'></i>
+          <span class="links_name">Guild Information</span>
+        </a>
+        <span class="tooltip">Guild Information</span>
+      </li>
+      <li class="active">
+        <a href="/dashboard/remove">
+          <i class='fa-solid fa-xmark'></i>
+          <span class="links_name">Remove</span>
+        </a>
+        <span class="tooltip">Remove statify from server</span>
+      </li>
+      <li class="user">
+        <a href="/logout">
+          <i class='fa-solid fa-arrow-right'></i>
+          <span class="links_name">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+    </ul>
+  </div>
+  <section id="main-content">
+    <div class="navbar-header">
+      <h3>Dashboard / Customization</h3>
+    </div>
+    <div class="customize">
+      <div class="container mt-3">
+        <div class="top">
+          <div class="section-header">
+            <h1>[guilds] Colors</h1>
+          </div>
+          <div class="colors">
+            <div class="d-flex justify-content-between">
+              <h3>Embed Color:</h3>
+              <input type="text" placeholder="#417bd2" value="#417bd2">
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('./Blocks/footer') %>
+
+    <script src="/js/statify.js"></script>
+    <script src="/js/sidebar.js"></script>
+
+</body>
+
+</html>

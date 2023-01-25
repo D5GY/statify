@@ -1,10 +1,17 @@
 #games {
-  height: 975px;
+  height: 130vh;
 
   .section-header {
     text-align: center;
     margin-top: 25px;
     margin-bottom: 50px;
+
+    h1 {
+      margin-top: 20px;
+    }
+    p {
+      margin-top: 25px;
+    }
   }
 
   .games-items {
@@ -21,7 +28,7 @@
 
         .accordion-header {
           .accordion-button {
-            background: $test;
+            background: $background;
             color: $fontColor;
             border:none;
           }
