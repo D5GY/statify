@@ -1,18 +1,17 @@
-const { Client, GatewayIntentBits, Partials, Collection, WebhookClient, AllowedMentionsTypes } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, Collection, WebhookClient } = require('discord.js');
 const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
-const utils = require('./Utils');
 const Utils = require('./Utils');
-const { GuildInvites, GuildMembers, GuildMessages, GuildPresences, Guilds, GuildWebhooks, MessageContent } = GatewayIntentBits;
-const { Channel, GuildMember, Message, User } = Partials;
+const { GuildInvites, GuildMembers, Guilds, GuildWebhooks } = GatewayIntentBits;
+const { Channel, GuildMember, User } = Partials;
 
 
 class statify extends Client {
   constructor() {
     super({
-      intents: [ GuildInvites, GuildMembers, GuildMessages, GuildMessages, GuildPresences, GuildWebhooks, Guilds, MessageContent ],
-      partials: [ Channel, GuildMember, Message, User ],
+      intents: [ GuildInvites, GuildMembers, GuildWebhooks, Guilds ],
+      partials: [ Channel, GuildMember, User ],
       presence: { afk: false, status: 'online' }
     });
 
@@ -34,8 +33,10 @@ class statify extends Client {
 
     this.config = Config;
     this.logger = Logger;
-    this.response = { content: utils.content, embed: utils.embeds };
+    this.response = { content: Utils.content, embed: Utils.embeds };
     this.requestAPI = new Utils.requestAPI(this.config.BOT.API_KEYS);
+    this.statifyAPI = new Utils.statifyAPI(this.config.API.KEY);
+    this.Functions = new Utils.Functions();
 
     this.webhooks = {
       suggest: new WebhookClient({ id: this.config.WEBHOOKS.SUGGESTION_SUBMIT.ID, token: this.config.WEBHOOKS.SUGGESTION_SUBMIT.TOKEN }),
@@ -44,8 +45,8 @@ class statify extends Client {
       guildDelete: new WebhookClient({ id: this.config.WEBHOOKS.GUILD_LEAVE.ID, token: this.config.WEBHOOKS.GUILD_LEAVE.TOKEN }),
       guildMemberAdd: new WebhookClient({ id: this.config.WEBHOOKS.JOIN_MEMBER.ID, token: this.config.WEBHOOKS.JOIN_MEMBER.TOKEN }),
       guildMemberRemove: new WebhookClient({ id: this.config.WEBHOOKS.LEAVE_MEMBER.ID, token: this.config.WEBHOOKS.LEAVE_MEMBER.TOKEN }),
-      messageUpdate: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_UPDATE.ID, token: this.config.WEBHOOKS.MESSAGE_UPDATE.TOKEN }),
-      messageDelete: new WebhookClient({ id: this.config.WEBHOOKS.MESSAGE_DELETE.ID, token: this.config.WEBHOOKS.MESSAGE_DELETE.TOKEN }),
+      botLogs: new WebhookClient({ id: this.config.WEBHOOKS.BOT_LOG.ID, token: this.config.WEBHOOKS.BOT_LOG.TOKEN }),
+      errorLogs: new WebhookClient({ id: this.config.WEBHOOKS.ERROR_LOG.ID, token: this.config.WEBHOOKS.ERROR_LOG.TOKEN })
     };
 
     this.commandsData = [];

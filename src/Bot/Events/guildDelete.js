@@ -5,9 +5,10 @@ const { Guild } = require('discord.js');
    */
 module.exports = (guild) => {
   const statify = guild.client;
+  statify.statifyAPI.DELETE_GUILD(guild.id);
   statify.webhooks.guildDelete.send({
     embeds: [statify.response.embed.GUILD_DELETE(guild, statify)]
   }).catch((error) => {
-    statify.emit('error', error);
+    statify.logger.RED('bot', error);
   });
 };

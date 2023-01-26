@@ -1,6 +1,6 @@
 {
   "name": "statify",
-  "version": "2.1.2",
+  "version": "2.1.10",
   "description": "statify multiple game stats lookup discord bot & website",
   "main": "src/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/D5GY/statify#readme",
   "dependencies": {
+    "call-of-duty-api": "^3.4.1",
     "chalk": "^4.1.2",
     "crypto": "^1.0.1",
     "discord.js": "^14.7.1",

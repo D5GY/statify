@@ -7,5 +7,8 @@ class Utils {
       Logger.RED('website', 'Data could not be found.')
     }
   }
+  discordImageURL(type, id, hash) {
+    return `https://cdn.discordapp.com/${type}/${id}/${hash}`
+  }
 }
 module.exports = new Utils;

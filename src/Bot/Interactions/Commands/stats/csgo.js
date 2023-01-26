@@ -5,8 +5,8 @@ module.exports = {
     .setName('csgo')
     .setDescription('Get statistics for a CSGO player.')
     .addStringOption(option =>
-      option.setName('player-id')
-        .setDescription('Provide the players User ID.')
+      option.setName('steam-id')
+        .setDescription('Provide the players Steam User ID.')
         .setRequired(true)
     ),
   /**
@@ -18,16 +18,28 @@ module.exports = {
     await interaction.deferReply({
       ephemeral: false
     });
-    const username = await interaction.options.getString('player-id');
+    const username = await interaction.options.getString('steam-id');
+    if (!statify.Functions.isSteamID(username)) {
+      return await interaction.editReply({
+        embeds: [statify.response.embed.CSGO.STEAM_ID(statify)]
+      })
+    }
     const data = await statify.requestAPI.CSGO(username);
     const jsonData = JSON.parse(data);
-    
-    if(jsonData.errors && jsonData.errors[0].code.includes('NotFound')) {
+
+    if (jsonData.errors && jsonData.errors[0].code.includes('NotFound')) {
       return await interaction.editReply({
         embeds: [statify.response.embed.CSGO.NOT_FOUND(username, statify)]
       });
+    } else if (jsonData.errors && jsonData.errors[0].code.includes('Private')) {
+      return await interaction.editReply({
+        embeds: [statify.response.embed.CSGO.PRIVATE(statify)]
+      });
     } else if (jsonData.errors && jsonData.errors[0]) {
-      statify.logger.RED('bot', `CSGO: ${jsonData.errors[0]}`);
+      statify.logger.RED('bot', `CSGO: ${jsonData}`);
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`[CSGO]: ${jsonData.errors[0].code}`, statify)]
+      });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('csgo lookup', statify)
       });

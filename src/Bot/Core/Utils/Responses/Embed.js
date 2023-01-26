@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, Embed } = require('discord.js');
 const moment = require('moment');
 const statify = require('../../statify');
 module.exports = {
@@ -9,7 +9,18 @@ module.exports = {
     return new EmbedBuilder()
       .setColor(statify.Colors.BLUE)
       .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setDescription(error);
+      .setDescription(error)
+      .setTimestamp();
+  },
+  /**
+   * @param { statify } statify
+  */
+  BOT_ONLINE: (statify) => {
+    return new EmbedBuilder()
+      .setColor(statify.Colors.BLUE)
+      .setAuthor({ name: 'statify Bot' })
+      .setTitle(`Online in ${statify.guilds.cache.size} ${statify.guilds.cache.size == 1 ? 'Guild' : 'Guilds'}`)
+      .setDescription(`Bot: ${statify.user.tag}\nClient Ping: ${statify.ws.ping}\nInteraction Commands: ${statify.commandsCount}\nInteraction Modals: ${statify.modalsCount}\nInteraction Menus: ${statify.selectMenusCount}\nEvents: ${statify.eventsCount}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`)
   },
   ping: (statify, ClientPing) => {
     return new EmbedBuilder()
@@ -49,6 +60,7 @@ module.exports = {
       )
       .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
       .setTimestamp()
+      .setFooter({ text: `Guild Count: ${statify.guilds.cache.size}` });
   },
   GUILD_DELETE: (guild, statify) => {
     return new EmbedBuilder()
@@ -60,31 +72,7 @@ module.exports = {
       )
       .setThumbnail(guild.iconURL() ?? statify.user.avatarURL())
       .setTimestamp()
-  },
-  MESSAGE_UPDATE: (oldMessage, newMessage, statify) => {
-    return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle('Edited Message')
-      .setDescription(`[Jump To Message](${oldMessage.url})`)
-      .setFields(
-        { name: 'Member', value: `User: ${oldMessage.author} \n ID: ${oldMessage.author.id}` },
-        { name: 'Old Message Content', value: `${oldMessage}` },
-        { name: 'New Message Content', value: `${newMessage}` }
-      )
-      .setThumbnail(oldMessage.author.avatarURL() ?? statify.user.avatarURL())
-      .setTimestamp()
-  },
-  MESSAGE_DELETE: (message, statify) => {
-    return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setTitle('Deleted Message')
-      .setDescription(`Channel: ${message.channel}`)
-      .setFields(
-        { name: 'Member', value: `User: ${message.author} \n ID: ${message.author.id}` },
-        { name: 'Delete Message Content', value: `${message.content}` },
-      )
-      .setThumbnail(message.author.avatarURL() ?? statify.user.avatarURL())
-      .setTimestamp()
+      .setFooter({ text: `Guild Count: ${statify.guilds.cache.size}` });
   },
   rainbow_six_siege_general: (data, statify) => {
     return new EmbedBuilder()
@@ -166,21 +154,21 @@ module.exports = {
     },
     minecraft: (statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setFields(
-        { name: 'Usage', value: '/minecraft `server:`' },
-        { name: 'Example', value: '/minecraft `server: mc.hypixel.net`' }
-      )
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/minecraft `server:`' },
+          { name: 'Example', value: '/minecraft `server: mc.hypixel.net`' }
+        )
     },
     fortnite: (statify) => {
       return new EmbedBuilder()
-      .setColor(statify.Colors.BLUE)
-      .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
-      .setFields(
-        { name: 'Usage', value: '/fortnite `username:` `platform`' },
-        { name: 'Example', value: '/fortnite `username: Ninja` `platform: epic`' }
-      )
+        .setColor(statify.Colors.BLUE)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Usage', value: '/fortnite `username:` `platform`' },
+          { name: 'Example', value: '/fortnite `username: Ninja` `platform: epic`' }
+        )
     }
   },
   SUGGESTION_SUBMIT: (platform, suggestion, user, statify) => {
@@ -333,6 +321,18 @@ module.exports = {
       }
 
       return csgoStats;
+    },
+    STEAM_ID: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} please provide a steam user-id to lookup.`);
+    },
+    PRIVATE: (statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.YELLOW)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_WHITE} The player either hasn't played CSGO or their profile is private.`);
     }
   },
   DIVISION_2: {
@@ -454,6 +454,90 @@ module.exports = {
           { name: 'Players Outlived', value: `${overall.playersOutlived}`, inline: true },
           { name: 'Time Played', value: `${parseFloat(moment.duration(overall.minutesPlayed, 'minutes').asHours()).toFixed(2)} Hours`, inline: true }
         )
+    }
+  },
+  BRAWL_STARS: {
+    NOT_FOUND: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found!`);
+    },
+    STATS: (data, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.name}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Level', value: `${data.expLevel}`, inline: true },
+          { name: 'Trophies', value: `${data.trophies}`, inline: true },
+          { name: 'Highest Trophies', value: `${data.highestTrophies}`, inline: true },
+          { name: 'Solo Victories', value: `${data.soloVictories}`, inline: true },
+          { name: 'Duo Victories', value: `${data.duoVictories}`, inline: true },
+          { name: '3vs3 Victories', value: `${data["3vs3Victories"]}`, inline: true },
+          { name: 'Highest Power Play Points', value: `${data.highestPowerPlayPoints}` },
+        )
+    }
+  },
+  CLASH_ROYALE: {
+    NOT_FOUND: (username, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found!`);
+    },
+    STATS: (data, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.BLUE)
+        .setTitle(`Lookup for ${data.name}`)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setFields(
+          { name: 'Level', value: `${data.expLevel}`, inline: true },
+          { name: 'Trophies', value: `${data.trophies}`, inline: true },
+          { name: 'Highest Trophies', value: `${data.bestTrophies}`, inline: true },
+          { name: 'Wins', value: `${data.wins}`, inline: true },
+          { name: 'Losses', value: `${data.losses}`, inline: true },
+          { name: 'Battle Count', value: `${data.battleCount}`, inline: true },
+          { name: 'Three Crown Wins', value: `${data.threeCrownWins}` },
+        )
+    }
+  },
+  CALL_OF_DUTY: {
+    NOT_FOUND: (username, platform, statify) => {
+      return new EmbedBuilder()
+        .setColor(statify.Colors.RED)
+        .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+        .setDescription(`${statify.Emojis.ICON_RED} Player **${username}** not found on **${platform}**!`);
+    },
+    WARZONE: {
+      STATS: (data, username, statify) => {
+        const WZ = new EmbedBuilder()
+          .setColor(statify.Colors.BLUE)
+          .setTitle(`Lookup for ${username}`)
+          .setAuthor({ name: 'statify.cc', url: 'https://statify.cc/', iconURL: statify.user.avatarURL() })
+          .setFooter({ text: 'All stats based of lifetime' });
+  
+        const stats = data.lifetime.all.properties;
+  
+        if (stats) {
+          if (stats.kills) WZ.addFields({ name: 'Kills', value: `${stats.kills}`, inline: true });
+          if (stats.deaths) WZ.addFields({ name: 'Deaths', value: `${stats.deaths}`, inline: true });
+          if (stats.kdRatio) WZ.addFields({ name: 'KD', value: `${parseFloat(`${stats.kdRatio}`).toFixed(2)}`, inline: true });
+          if (stats.bestKills) WZ.addFields({ name: 'Highest Kills', value: `${stats.bestKills}`, inline: true });
+          if (stats.headshots) WZ.addFields({ name: 'Headshots', value: `${stats.headshots}`, inline: true });
+          if (stats.assists) WZ.addFields({ name: 'Assists', value: `${stats.assists}`, inline: true });
+          if (stats.scorePerGame) WZ.addFields({ name: 'Score Per Game', value: `${parseFloat(`${stats.scorePerGame}`).toFixed(2)}`, inline: true });
+          if (stats.bestSPM) WZ.addFields({ name: 'Best Score Per Min', value: `${stats.bestSPM}`, inline: true });
+          if (stats.bestScore) WZ.addFields({ name: 'Best Score', value: `${stats.bestScore}`, inline: true });
+          if (stats.gamesPlayed) WZ.addFields({ name: 'Games Played', value: `${stats.gamesPlayed}`, inline: true });
+          if (stats.recordLongestWinStreak) WZ.addFields({ name: 'Best Win Streak', value: `${stats.recordLongestWinStreak}`, inline: true });
+          if (stats.recordXpInAMatch) WZ.addFields({ name: 'Best XP Match', value: `${stats.recordXpInAMatch}`, inline: true });
+        } else if (!segment) {
+          WZ.setDescription(`${statify.Emojis.ICON_WHITE} I could not find any stats this player.`);
+        }
+  
+        return WZ;
+      }
     }
   }
 }

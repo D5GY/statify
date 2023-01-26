@@ -31,7 +31,7 @@ module.exports = {
     const username = await interaction.options.getString('username');
     const platform = await interaction.options.getString('platform');
 
-    if (platform == 'steam' && !isSteamID(username)) {
+    if (platform == 'steam' && !statify.Functions.isSteamID(username)) {
       return await interaction.editReply({
         embeds: [statify.response.embed.SPLITGATE.STEAM_ID(statify)]
       });
@@ -46,6 +46,9 @@ module.exports = {
       });
     } else if (jsonData.errors && jsonData.errors[0]) {
       statify.logger.RED('bot', `SPLITGATE: ${jsonData.errors[0]}`);
+      statify.webhooks.errorLogs.send({
+        embeds: [statify.response.embed.ERROR(`SPLITGATE: ${jsonData.errors[0]}`, statify)]
+      });
       return await interaction.editReply({
         content: statify.response.content.DEFAULT_ERROR('Splitgate lookup', statify)
       });
@@ -54,9 +57,4 @@ module.exports = {
       embeds: [statify.response.embed.SPLITGATE.STATS(jsonData, statify)]
     });
   }
-}
-
-function isSteamID(username) {
-  const steamIDRegex = new RegExp(/^\d+\.?\d*$/);
-  return steamIDRegex.test(username);
 }

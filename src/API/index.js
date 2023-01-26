@@ -1,94 +1,36 @@
 const express = require('express');
 const { Config } = require('../config');
+const { Logger } = require('../Logger');
 const app = express();
-const logger = require('../Logger').Logger;
-const Database = require('./Utils/database');
-const mysql = new Database(Config.API.DATABASE, logger);
-const HttpStatusCodes = { // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-  OK: 200,
-  CREATED: 201,
-  BAD_REQUEST: 400,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  INTERNAL_SERVER_ERROR: 500
-}
+const { WebhookClient } = require('discord.js');
+const apiWebhook = new WebhookClient({ id: Config.WEBHOOKS.API_LOGS.ID, token: Config.WEBHOOKS.API_LOGS.TOKEN });
+const apiError = new WebhookClient({ id: Config.WEBHOOKS.API_ERRORS.ID, token: Config.WEBHOOKS.API_ERRORS.TOKEN });
+const sqlLog = new WebhookClient({ id: Config.WEBHOOKS.SQL_LOGS.ID, token: Config.WEBHOOKS.SQL_LOGS.TOKEN });
+const staff = require('./Utils/Routes/staff');
+const misc = require('./Utils/Routes/miscellaneous');
+const guild = require('./Utils/Routes/guild');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/api/staff', staff.get);
+app.delete('/api/staff/:discordID', staff.delete);
+app.post('/api/staff', staff.post);
 
-app.post('/API/staff', async (req, res) => {
-  let api = req.headers['statify-api-key'];
-  if (!api) {
-    return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
-  } else if (api !== Config.API.KEY) {
-    return res.json({ status: HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
-  } else if (Object.keys(req.body) == 0) {
-    return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No valid JSON body was found' });
-  }
-  const body = JSON.parse(JSON.stringify(req.body));
-  if (!mysql.connected) mysql.connect();
-  let query = undefined;
-  try {
-    query = await mysql.query(
-      'INSERT INTO staff (discordID, permissions, name) VALUES (?, ?, ?)',
-      body.discordID,
-      body.perms,
-      body.name
-    );
+app.post('/api/guild/create', guild.create);
+app.get('/api/guild/get', guild.get_guild);
+app.post('/api/guild/cmd', guild.increase_cmd_count);
+app.delete('/api/guild/delete', guild.delete);
 
-    res.json({ status: HttpStatusCodes.CREATED, response: query });
-  } catch (error) {
-    logger.RED('api', `STAFF POST MYSQL: ${error}`);
-    res.json({ status: HttpStatusCodes.INTERNAL_SERVER_ERROR, error: error });
-  }
-});
+app.post('/api/suggest', misc.postSuggest);
 
-app.delete('/API/staff/:discordID', async (req, res) => {
-  let api = req.headers['statify-api-key'];
-  let ID = req.params.discordID;
-  if (!api) {
-    return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
-  } else if (api !== Config.API.KEY) {
-    return res.json({ status: HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
-  } else if (!ID) {
-    return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No discordID was passed.' });
-  }
-  let query = undefined;
-  if (!mysql.connected) mysql.connect();
-  try {
-    query = await mysql.query(
-      'DELETE FROM staff WHERE discordID = ?',
-      ID
-    );
-    res.json({ status: HttpStatusCodes.OK, response: query });
-  } catch (error) {
-    logger.RED('API', `MYSQL STAFF DELETE: ${error}`);
-    res.json({ status: HttpStatusCodes.INTERNAL_SERVER_ERROR, error: error });
-  }
-});
-
-app.get('/API/staff', async (req, res) => {
-  let api = req.headers['statify-api-key'];
-  if (!api) {
-    return res.json({ status: HttpStatusCodes.BAD_REQUEST, message: 'No API Key provided' });
-  } else if (api !== Config.API.KEY) {
-    return res.json({ status: HttpStatusCodes.FORBIDDEN, message: 'Invalid API Key provided' });
-  }
-    let query = undefined;
-    if (!mysql.connected) mysql.connect();
-    try {
-      query = await mysql.query(
-        'SELECT * FROM staff',
-      );
-      res.json({ status: HttpStatusCodes.OK, response: query });
-    } catch (error) {
-      logger.RED('API', `MYSQL STAFF GET: ${error}`);
-      res.json({ status: HttpStatusCodes.INTERNAL_SERVER_ERROR, error: error });
-    }
-});
-
-app.listen(1337, () => {
-  logger.GREEN('API', `listening on http://localhost:1337`);
-  mysql.connect();
+app.listen(Config.API.PORT, () => {
+  Logger.GREEN('API', 'Online');
+  if (!Config.DEVELOPMENT_MODE) apiWebhook.send({
+    embeds: [{
+      color: 0x417bd2,
+      author: { name: 'statify API' },
+      description: `API online using proxy port ${Config.API.PORT}\nTime: <t:${Math.floor(Date.now() / 1000)}:R>`
+    }]
+  });
 });

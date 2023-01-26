@@ -12,9 +12,10 @@ module.exports = {
   async execute(interaction, statify) {
     const platform = interaction.fields.getTextInputValue('suggestionPlatform');
     const suggestion = interaction.fields.getTextInputValue('suggestion');
-    statify.webhooks.suggest.send({
+    const webhook = await statify.webhooks.suggest.send({
       embeds: [statify.response.embed.SUGGESTION_SUBMIT(platform, suggestion, interaction.user, statify)]
     });
+    statify.statifyAPI.POST_SUGGEST(suggestion, platform, interaction, webhook.id);
     await interaction.reply({
       content: statify.response.content.MODAL_SUBMITTED('suggestion', statify)
     });

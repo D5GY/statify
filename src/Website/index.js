@@ -39,7 +39,7 @@ app.get('/dashboard/settings', require('./Utils/Routes/settings'));
 
 app.get('/discord', (req, res) => { res.redirect(WEBSITE.URLs.DISCORD_INVITE) });
 app.get('/invite', (req, res) => { res.redirect(WEBSITE.URLs.BOT_INVITE) });
-app.get('/vote', (req, res) => {res.redirect(WEBSITE.URLs.TOP_GG) });
+app.get('/vote', (req, res) => { res.redirect(WEBSITE.URLs.TOP_GG) });
 app.get('/github', (req, res) => { res.redirect(WEBSITE.URLs.GITHUB) });
 
 app.get('*', require('./Utils/Routes/error'));

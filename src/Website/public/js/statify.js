@@ -170,7 +170,6 @@ const stat_command_array = [
     image: '/Images/Games/splitgate.png'
   }
 ]
-
 window.onload = () => {
   let disp = "";
   for (let i = 0; i < stat_command_array.length; i++) {
