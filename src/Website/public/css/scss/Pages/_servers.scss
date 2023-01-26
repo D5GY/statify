@@ -1,0 +1,31 @@
+#servers {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 92.5vh;
+
+  .card {
+    border-radius: 0px;
+    background: transparent;
+    border: solid 2px $blue;
+    margin-top: 8px;
+    margin-bottom: 25px;
+  }
+
+  .server-container {
+    margin-top: 25px;
+    border-radius: 2px;
+    background: transparent;
+    border: solid 2px $blue;
+
+    .section-title2 {
+      margin-left: 25px;
+      margin-top: 25px;
+      margin-bottom: 20px;
+
+      h1 {
+        color: $blue;
+      }
+    }
+  }
+}

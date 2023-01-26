@@ -1,7 +1,7 @@
 @import './constants';
 
 * {
-  background: $test;
+  background: $background;
   color: $fontColor;
   margin: 0;
   padding: 0;
@@ -21,9 +21,18 @@
   background: $backgroundDarkish
 }
 
-@import './Blocks/navbar';
+@import './Blocks/header';
 @import './Blocks/footer';
+@import './Blocks/navbar';
+@import './Blocks/top';
 
+@import './Pages/body';
 @import './Pages/home';
+@import './Pages/media';
 @import './Pages/commands';
 @import './Pages/error';
+@import './Pages/status';
+@import './Pages/about';
+
+@import './Pages/dashboard';
+@import './Pages/servers';

@@ -7,31 +7,44 @@
 
 <body>
 
-  <%- include('./Blocks/navbar', user) %>
+  <%- include('./Blocks/navbar') %>
 
-    <section id="home">
+    <section id="home" class="d-flex align-items-center">
       <div class="container">
-        <div class="home-content">
-          <div class="home-items">
-            <div class="col-lg-7">
-              <h1>Game stats straight to discord.</h1>
-            <hr>
-            <p>statify is fully customized Discord bot for looking up game stats directly in Discord. statify is also coded to prevent errors such as if the player is not found it will simply say that!</p>
-            <p>Want to try statify? Just click on the "Add To Server" button to add the bot. Don't forgot to join our Discord for updates on statify!</p>
+        <div class="row">
+          <div
+            class="col-lg-8 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1"
+            data-aos="fade-down">
+            <div>
+              <h2>Game stats straight to discord.</h2>
+              <p>
+                statify is customized Discord bot for looking up game stats directly in Discord.
+                <br>
+                Our Discord Bot is fully coded to prevent errors, wrong lookups and bad requests.
+              </p>
+              <p>
+                Want to have statify in your server? Just click on the invite statify button below. 
+                <br> 
+                Don't forget to join our discord for updates on statify!
+              </p>
+              <a href="/discord" class="links"><i class="fa-brands fa-discord"></i> Discord</a>
+              <a href="/invite" class="links"><i class="fa-solid fa-robot"></i> Invite statify</a>
             </div>
           </div>
-          <div class="home-buttons">
-            <button onclick="location.href='/invite'" class="btn btn-lg">Add To Server <i class="fa-solid fa-robot"></i></button>
-            <button onclick="location.href='/discord'" class="btn btn-lg">Discord <i class="fa-brands fa-discord"></i></button>
+          <div class="col-lg-4 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 home-img"
+            data-aos="fade-down">
+            <img src="/Images/statify/statify_logo_icon.png" class="img-fluid" alt="">
           </div>
         </div>
       </div>
     </section>
 
-    <%- include('./Blocks/footer') %>
+    <%- include('./Blocks/top') %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/JS/statify.js"></script>
+      <%- include('./Blocks/footer') %>
+
+        <script src="/js/statify.js"></script>
+
 </body>
 
 </html>

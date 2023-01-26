@@ -1,0 +1,36 @@
+#header {
+  transition: all 0.5s;
+  z-index: 997;
+  transition: all 0.5s;
+  padding: 15px 0;
+  background: $background;
+
+  .logo {
+    h1 {
+      font-size: 30px;
+      margin: 0;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 2px;
+
+      a, a:hover {
+        color: #83489c;
+        text-decoration: none;
+      }
+    }
+
+    img {
+      margin: 0;
+      max-height: 40px;
+    }
+  }
+}
+
+#header.header-transparent {
+  background: transparent;
+}
+
+#header.header-scrolled {
+  background: $background;
+  border-bottom: solid 2px $blue;
+}

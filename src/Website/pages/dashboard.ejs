@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/Images/statify/statify_logo.png" height="50" width="160" class="logo_name">
+      <i class='fa-solid fa-bars' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li class="active">
+        <a href="/dashboard">
+          <i class='fa-solid fa-house'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li class="active">
+        <a href="/dashboard/customize">
+          <i class='fa-solid fa-paintbrush'></i>
+          <span class="links_name">Customization</span>
+        </a>
+        <span class="tooltip">Customization</span>
+      </li>
+      <li class="active">
+        <a href="/dashboard/information">
+          <i class='fa-solid fa-info'></i>
+          <span class="links_name">Guild Information</span>
+        </a>
+        <span class="tooltip">Guild Information</span>
+      </li>
+      <li class="active">
+        <a href="/dashboard/remove">
+          <i class='fa-solid fa-xmark'></i>
+          <span class="links_name">Remove</span>
+        </a>
+        <span class="tooltip">Remove statify from server</span>
+      </li>
+      <li class="user">
+        <a href="/remove" data-toggle="modal" data-target="#popup">
+          <i class='fa-solid fa-arrow-right'></i>
+          <span class="links_name">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+    </ul>
+  </div>
+
+  <section id="main-content">
+    <div class="navbar-header d-flex">
+      <h3>Dashboard</h3>
+    </div>
+    <div class="overview">
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-lg-4 col-xl-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="media align-items-center mb-4 d-flex">
+                  <img class="mr-3" src="/Images/statify/statify_logo_icon.png" width="80" height="80" alt="">
+                  <div class="media-body">
+                    <h3 class="mb-0">Server Name</h3>
+                    <p class="text-muted mb-0">0 Members</p>
+                  </div>
+                </div>
+
+                <h4>Guild Overview</h4>
+                <ul>
+                  <li>0 Bots</li>
+                  <li>N/A owns this guild</li>
+                  <li>Created 0 Days ago</li>
+                </ul>
+                <br>
+                <h4>statify Overview</h4>
+                <ul>
+                  <li>statify joined 0 Days ago</li>
+                  <li>statify is on verison 0.0</li>
+                </ul>
+                <br>
+                <p>This is just a overview of statify/guild information. If you would like to see all info look at the Guild Information tab.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('./Blocks/footer') %>
+
+    <script src="/js/statify.js"></script>
+    <script src="/js/sidebar.js"></script>
+
+</body>
+
+</html>

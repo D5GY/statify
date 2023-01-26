@@ -1,6 +1,6 @@
 #error {
   min-height: 969px;
-  background: $backgroundDark;
+  background: $background;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,19 +10,21 @@
     max-width: 1140px;
     max-height: 576px;
     width: 100%;
-    background: $backgroundDark;
+    background: $background;
 
     .box {
       position: relative;
       justify-content: center;
       align-items: center;
-      background: $backgroundDark;
+      background: $background;
+
       .error-items {
         color: $fontColor;
-        background: $backgroundDark;
+        background: $background;
 
-        h1, h2 {
-          background: $backgroundDark;
+        h1,
+        h2 {
+          background: $background;
         }
 
         button {
@@ -30,14 +32,15 @@
 
           i {
             margin-right: 5px;
-            background: $backgroundDark;
+            background: $background;
           }
 
           &:hover {
-            background: $backgroundDimDark;
-            box-shadow: 0 0px 10px $backgroundDark;
+            border-radius: 0px;
+            border-bottom: solid 1px $blue;
+
             i {
-              background: $backgroundDimDark;
+              background: $background;
             }
           }
         }
