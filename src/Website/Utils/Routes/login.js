@@ -6,5 +6,4 @@ router.get('/login', (req, res, next) => {
   next();
 }, passport.authenticate('discord'));
 
-
 module.exports = router;

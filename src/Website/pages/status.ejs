@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+</head>
+
+<body>
+
+  <%- include('./Blocks/navbar') %>
+
+    <section id="status" class="d-flex align-items-center">
+
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-8 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1"
+            data-aos="fade-down">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-title">
+                        <h4>statify Status</h4>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Operation</th>
+                              <th>Last Update</th>
+                              <th>Status</th>
+                              <th>Uptime</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>1</th>
+                              <td>Discord BOT</td>
+                              <td id="update_date">Date</td>
+                              <td> <i class="fa-solid fa-circle"></i> Operational</td>
+                              <td id="uptime">Time</td>
+                            </tr>
+                            <tr>
+                              <th>2</th>
+                              <td>Website</td>
+                              <td id="update_date">Date</td>
+                              <td> <i class="fa-solid fa-circle"></i> Operational</td>
+                              <td id="uptime">Time</td>
+                            </tr>
+                            <tr>
+                              <th>3</th>
+                              <td>API</td>
+                              <td id="update_date">Date</td>
+                              <td> <i class="fa-solid fa-circle"></i> Operational</td>
+                              <td id="uptime">Time</td>
+                            </tr>
+                            <tr>
+                              <th>4</th>
+                              <td>Management Panel</td>
+                              <td id="update_date">Date</td>
+                              <td> <i class="fa-solid fa-circle"></i> Operational</td>
+                              <td id="uptime">Time</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 home-img"
+            data-aos="fade-down">
+            <img src="/Images/statify/statify_logo_icon.png" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <%- include('./Blocks/footer') %>
+
+      <script src="/js/statify.js"></script>
+      <script src="/js/uptime.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./Blocks/head', title) %>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/Images/statify/statify_logo.png" height="50" width="160" class="logo_name">
+      <i class='fa-solid fa-bars' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="/dashboard">
+          <i class='fa-solid fa-house'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a href="/dashboard/customize">
+          <i class='fa-solid fa-paintbrush'></i>
+          <span class="links_name">Customization</span>
+        </a>
+        <span class="tooltip">Customization</span>
+      </li>
+      <li>
+        <a href="/dashboard/information">
+          <i class='fa-solid fa-info'></i>
+          <span class="links_name">Guild Information</span>
+        </a>
+        <span class="tooltip">Guild Information</span>
+      </li>
+      <li class="active">
+        <a href="/dashboard/remove">
+          <i class='fa-solid fa-xmark'></i>
+          <span class="links_name">Remove</span>
+        </a>
+        <span class="tooltip">Remove statify from server</span>
+      </li>
+      <li class="user">
+        <a href="/logout">
+          <i class='fa-solid fa-arrow-right'></i>
+          <span class="links_name">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+    </ul>
+  </div>
+
+  <section id="main-content">
+    <div class="navbar-header">
+      <h3>Dashboard / Guild Information</h3>
+    </div>
+    <div class="information">
+      <div class="container mt-3">
+        <div class="guild">
+          <div class="section-header">
+            <h1>[guilds] Information</h1>
+          </div>
+          <div class="items">
+            <div class="d-flex justify-content-between">
+              <h3>Guild Name:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild ID:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Members:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Bots:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Owner:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Messages:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Emojis:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Stickers:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Bans:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Guild Creation Date:</h3>
+              <h3>gggg</h3>
+            </div>
+          </div>
+        </div>
+        <div class="statify">
+          <div class="section-header">
+            <h1>[statify] Information</h1>
+          </div>
+          <div class="items">
+            <div class="d-flex justify-content-between">
+              <h3>Commands Used:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Last Used Command:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Most Used Command:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>statify Join Date:</h3>
+              <h3>gggg</h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <h3>Version:</h3>
+              <h3>gggg</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('./Blocks/footer') %>
+
+    <script src="/js/statify.js"></script>
+    <script src="/js/sidebar.js"></script>
+
+</body>
+
+</html>

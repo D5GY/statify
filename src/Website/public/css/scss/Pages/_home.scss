@@ -1,48 +1,62 @@
 #home {
-  min-height: 910px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $test;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 92.5vh;
 
-  .container {
-    width: 100%;
+  h2 {
+    margin: 0 0 10px 0;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 56px;
+    color: $blue;
+    font-family: "Poppins", sans-serif;
+  }
+
+  p {
+    color: #515f7d;
+    margin-top: 35px;
+    margin-bottom: 50px;
+    font-size: 20px;
+  }
+
+  .links {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
+    padding: 8px 24px 10px 46px;
+    border-radius: 3px;
+    transition: 0.5s;
+    color: #fff;
+    background: $blue;
     position: relative;
-  
-    margin: {
-      left: auto;
-      right: auto;
-    }
-  
-    padding: {
-      left: 15px;
-      right: 15px;
-    }
-  }  
 
-  .home-content {
-    .home-items {
-      font-size: 18px;
-      hr {
-        color: $test;
+    &:hover {
+      background: $blue;
+      font-size: 20px;
+
+      i {
+        margin-top: 5px;
       }
     }
-    .home-buttons {
-      margin-top: 25px;
-      margin-left: -15px;
-      .btn {
-        color: $fontColor;
 
-        i {
-          margin-left: 10px;
-        }
-        &:hover {
-          box-shadow: 0 0px 10px $blue;
-          i {
-            color: $blue;
-          }
-        }
-      }
+    i {
+      font-size: 20px;
+      position: absolute;
+      left: 18px;
+      top: 8.5px;
+      background: transparent;
     }
+
+    +.links {
+      margin-left: 20px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  #home {
+    height: 1000px
   }
 }
