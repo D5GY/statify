@@ -7,17 +7,25 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" href="/"> Home</a></li>
-        <li><a class="nav-link scrollto" href="/commands"> Commands</a></li>
-        <li><a class="nav-link scrollto" href="/vote"> Vote</a></li>
-        <li><a class="nav-link scrollto" href="/status"> Status</a></li>
-        <li class="dropdown"><a href="#"><span class="nav-link spa" style="font-size: 18px;">Other</span> <i class="bi bi-chevron-down"></i></a>
+        <li><a class="nav-link scrollto active" href="/">Home</a></li>
+        <li><a class="nav-link scrollto" href="/commands">Commands</a></li>
+        <li><a class="nav-link scrollto" href="/vote">Vote</a></li>
+        <li><a class="nav-link scrollto" href="/status">Status</a></li>
+        <% if (user) { %>
+          <li><a class="nav-link scrollto" href="/dashboard">Dashboard</a></li>
+        <% } %>
+        <li class="dropdown"><a href="#"><span class="nav-link spa" style="font-size: 18px;">Other</span> <i
+              class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="/about">Terms Of Service <i class="fa-solid fa-scroll"></i></a></li>
             <li><a href="/about">Privacy Policy <i class="fa-solid fa-shield-halved"></i></a></li>
           </ul>
         </li>
-        <li><a class="login scrollto" href="/dashboard"> Login</a></li>
+        <% if (user) { %>
+          <li><a class="login scrollto" href="/logout">Logout</a></li>
+        <% } else { %>
+          <li><a class="login scrollto" href="/login">Login</a></li>
+        <% } %>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
