@@ -12,7 +12,7 @@ module.exports = {
     if (!this.isAuthenticated(req, res, next)) {
       return res.redirect('/login');
     } else if (!Config.STATIFY_DEVELOPERS_ID.includes(req.user.id)) {
-      return res.redirect('/dashboard/index');
+      return res.redirect('/dashboard');
     } else return next();
   }
 }
