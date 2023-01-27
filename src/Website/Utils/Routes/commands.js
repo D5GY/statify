@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/commands', (req, res) => {
   renderPage(req, res, 'commands.ejs', {
-    title: 'statify - Commands',
+    title: 'statify - Commands'
   });
 });
 
