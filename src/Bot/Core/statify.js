@@ -3,6 +3,7 @@ const { Config } = require('../../config');
 const { Logger } = require('../../Logger');
 const { readdirSync } = require('fs');
 const Utils = require('./Utils');
+const { WS } = require('./WS-Server');
 const { GuildInvites, GuildMembers, Guilds, GuildWebhooks } = GatewayIntentBits;
 const { Channel, GuildMember, User } = Partials;
 
@@ -108,6 +109,7 @@ class statify extends Client {
   start() {
     this.loadEvents();
     this.loadInteractions();
+    WS(this ,this.logger);
     super.login(this.config.DEVELOPMENT_MODE ? this.config.BOT.DEVELOPMENT.TOKEN : this.config.BOT.PRODUCTION.TOKEN);
   }
 }

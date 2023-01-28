@@ -11,6 +11,7 @@ const sqlLog = new WebhookClient({ id: Config.WEBHOOKS.SQL_LOGS.ID, token: Confi
 const staff = require('./Utils/Routes/staff');
 const misc = require('./Utils/Routes/miscellaneous');
 const guild = require('./Utils/Routes/guild');
+const ws = require('./Utils/Routes/ws');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,10 +22,13 @@ app.post('/api/staff', staff.post);
 
 app.post('/api/guild/create', guild.create);
 app.get('/api/guild/get', guild.get_guild);
+app.get('/api/guild/all', guild.get_all);
 app.post('/api/guild/cmd', guild.increase_cmd_count);
 app.delete('/api/guild/delete', guild.delete);
 
 app.post('/api/suggest', misc.postSuggest);
+
+app.get('/api/guild/ws/get', ws.get_guild);
 
 app.listen(Config.API.PORT, () => {
   Logger.GREEN('API', 'Online');
