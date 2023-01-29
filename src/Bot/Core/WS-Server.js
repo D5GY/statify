@@ -13,15 +13,22 @@ exports.WS = (statify, logger) => {
     logger.GREEN('socket', `Server started: ${addr.address}:${addr.port} (${addr.family})`);
   });
 
-  server.on('message', async(msg, info) => {
+  server.on('message', async (msg, info) => {
     const message = msg.toString();
     if (message.includes('get_guild_')) {
       const ID = message.split('_')[2];
-      const data = Buffer.from(JSON.stringify(await statify.guilds.fetch(ID)));
-      server.send([data], info.port, 'localhost', (error, bytes) => {
-        if (error) {
-          console.log(error);
-        }
+      await statify.guilds.fetch(ID).then(res => {
+        server.send([Buffer.from(JSON.stringify(res))], info.port, 'localhost', (error, bytes) => {
+          if (error) {
+            console.log(error);
+          }
+        });
+      }).catch(error => {
+        server.send([Buffer.from(JSON.stringify(error.rawError))], info.port, 'localhost', (error, bytes) => {
+          if (error) {
+            console.log(error);
+          }
+        });
       });
     } else {
       server.send(Buffer.from('ERROR: unknown else if'), info.port, 'localhost');
