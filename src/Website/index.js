@@ -34,9 +34,7 @@ app.get('/dashboard', require('./Utils/Routes/Dashboard/index'));
 app.get('/dashboard/:id/information', require('./Utils/Routes/Dashboard/information'));
 app.get('/dashboard/:id/customize', require('./Utils/Routes/Dashboard/customize'));
 app.get('/dashboard/:id/settings', require('./Utils/Routes/Dashboard/settings'));
-app.get('/dashboard/:id/remove', (req, res) => {
-  
-});
+app.get('/dashboard/:id/remove', (req, res) => { return; });
 
 app.get('/discord', (req, res) => { res.redirect(WEBSITE.URLs.DISCORD_INVITE) });
 app.get('/invite', (req, res) => { res.redirect(WEBSITE.URLs.BOT_INVITE) });
@@ -51,7 +49,7 @@ app.listen(WEBSITE.PORT, () => {
   Logger.BLUE('website', 'Building wesbite');
   Logger.BLUE('website', 'Website built');
   Logger.BLUE('website', `Time to build: ${gotFiles - getFiles} milliseconds`)
-  Logger.BLUE('website', `Online on port ${WEBSITE.PORT}`);
+  Logger.GREEN('website', `Online on port ${WEBSITE.PORT}`);
   if (!DEVELOPMENT_MODE) {
     WebsiteOnline.send({
       embeds: [{ color: '', author: { name: 'statify' }, description: `Website is now online using proxy port ${WEBSITE.PORT}`, timestamp: new Date().toLocaleString() }]
