@@ -1,4 +1,6 @@
 const { Logger } = require("../../Logger");
+const request = require('request');
+const { Config } = require("../../config");
 const discordPermissions = {
   CREATE_INSTANT_INVITE: 0x1,
   KICK_MEMBERS: 0x2,
@@ -65,6 +67,23 @@ class Utils {
       }
     }
     return permissions;
+  }
+  requestApiGet(endpoint, json = {}) {
+    return new Promise((resolve, reject) => {
+      try {
+        request.get({
+          url: `https://statify.cc/api/${endpoint}`,
+          headers: { 'statify-api-key': Config.API.KEY },
+          json: json
+        }, (error, response, body) => {
+          if (error)
+            return reject(error);
+          else resolve(body)
+        });
+      } catch (error) {
+        return reject(error);
+      }
+    });
   }
 }
 module.exports = new Utils;

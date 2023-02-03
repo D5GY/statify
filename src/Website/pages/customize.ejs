@@ -14,36 +14,37 @@
       <i class='fa-solid fa-bars' id="btn"></i>
     </div>
     <ul class="nav-list">
-      <li>
+      <li class="active">
         <a href="/dashboard">
           <i class='fa-solid fa-house'></i>
           <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
-      <li>
-        <a href="/dashboard/customize">
+      <li class="active">
+        <a href="/dashboard/<%= guild.id %>/customize">
           <i class='fa-solid fa-paintbrush'></i>
           <span class="links_name">Customization</span>
         </a>
         <span class="tooltip">Customization</span>
       </li>
-      <li>
-        <a href="/dashboard/information">
+      <li class="active">
+        <a href="/dashboard/<%= guild.id %>/information">
           <i class='fa-solid fa-info'></i>
           <span class="links_name">Guild Information</span>
         </a>
         <span class="tooltip">Guild Information</span>
       </li>
       <li class="active">
-        <a href="/dashboard/remove">
+        <!--<a href="/dashboard/<%= guild.id %>/remove">-->
+          <a href="javascript:void">
           <i class='fa-solid fa-xmark'></i>
           <span class="links_name">Remove</span>
         </a>
         <span class="tooltip">Remove statify from server</span>
       </li>
       <li class="user">
-        <a href="/logout">
+        <a href="/logout" data-toggle="modal" data-target="#popup">
           <i class='fa-solid fa-arrow-right'></i>
           <span class="links_name">Logout</span>
         </a>
@@ -51,6 +52,7 @@
       </li>
     </ul>
   </div>
+
   <section id="main-content">
     <div class="navbar-header">
       <h3>Dashboard / Customization</h3>
@@ -59,12 +61,12 @@
       <div class="container mt-3">
         <div class="top">
           <div class="section-header">
-            <h1>[guilds] Colors</h1>
+            <h1><%= guild.ws.name %> Colors</h1>
           </div>
           <div class="colors">
             <div class="d-flex justify-content-between">
               <h3>Embed Color:</h3>
-              <input type="text" placeholder="#417bd2" value="#417bd2">
+              <input type="text" placeholder="#417bd2" value="#<%= guild.sql.color %>">
             </div>
             <hr>
           </div>

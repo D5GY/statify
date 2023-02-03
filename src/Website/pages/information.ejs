@@ -13,36 +13,37 @@
       <i class='fa-solid fa-bars' id="btn"></i>
     </div>
     <ul class="nav-list">
-      <li>
+      <li class="active">
         <a href="/dashboard">
           <i class='fa-solid fa-house'></i>
           <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
-      <li>
-        <a href="/dashboard/customize">
+      <li class="active">
+        <a href="/dashboard/<%= guild.id %>/customize">
           <i class='fa-solid fa-paintbrush'></i>
           <span class="links_name">Customization</span>
         </a>
         <span class="tooltip">Customization</span>
       </li>
-      <li>
-        <a href="/dashboard/information">
+      <li class="active">
+        <a href="/dashboard/<%= guild.id %>/information">
           <i class='fa-solid fa-info'></i>
           <span class="links_name">Guild Information</span>
         </a>
         <span class="tooltip">Guild Information</span>
       </li>
       <li class="active">
-        <a href="/dashboard/remove">
+        <!--<a href="/dashboard/<%= guild.id %>/remove">-->
+          <a href="javascript:void">
           <i class='fa-solid fa-xmark'></i>
           <span class="links_name">Remove</span>
         </a>
         <span class="tooltip">Remove statify from server</span>
       </li>
       <li class="user">
-        <a href="/logout">
+        <a href="/logout" data-toggle="modal" data-target="#popup">
           <i class='fa-solid fa-arrow-right'></i>
           <span class="links_name">Logout</span>
         </a>
@@ -59,88 +60,68 @@
       <div class="container mt-3">
         <div class="guild">
           <div class="section-header">
-            <h1>[guilds] Information</h1>
+            <h1><%= JSON.parse(guild.ws.response).name %> Information</h1>
           </div>
           <div class="items">
             <div class="d-flex justify-content-between">
-              <h3>Guild Name:</h3>
-              <h3>gggg</h3>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
               <h3>Guild ID:</h3>
-              <h3>gggg</h3>
+              <h3><%= guild.id %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
-              <h3>Guild Members:</h3>
-              <h3>gggg</h3>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-              <h3>Guild Bots:</h3>
-              <h3>gggg</h3>
+              <h3>Guild Cached Members:</h3>
+              <h3><%= JSON.parse(guild.ws.response).members.length %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>Guild Owner:</h3>
-              <h3>gggg</h3>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-              <h3>Guild Messages:</h3>
-              <h3>gggg</h3>
+              <h3><%= JSON.parse(guild.ws.response).ownerId %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>Guild Emojis:</h3>
-              <h3>gggg</h3>
+              <h3><%= JSON.parse(guild.ws.response).emojis.length %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>Guild Stickers:</h3>
-              <h3>gggg</h3>
+              <h3><%= JSON.parse(guild.ws.response).stickers.length %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
-              <h3>Guild Bans:</h3>
-              <h3>gggg</h3>
+              <h3>Guild Premium Tier:</h3>
+              <h3><%= JSON.parse(guild.ws.response).premiumTier %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>Guild Creation Date:</h3>
-              <h3>gggg</h3>
+              <h3><%= new Date(JSON.parse(guild.ws.response).createdTimestamp).toUTCString() %></h3>
             </div>
           </div>
         </div>
         <div class="statify">
           <div class="section-header">
-            <h1>[statify] Information</h1>
+            <h1>Bot Information</h1>
           </div>
           <div class="items">
             <div class="d-flex justify-content-between">
               <h3>Commands Used:</h3>
-              <h3>gggg</h3>
+              <h3><%= guild.sql.response[0].commands_count %></h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>Last Used Command:</h3>
-              <h3>gggg</h3>
+              <h3>Unknown</h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>Most Used Command:</h3>
-              <h3>gggg</h3>
+              <h3>Unknown</h3>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
               <h3>statify Join Date:</h3>
-              <h3>gggg</h3>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-              <h3>Version:</h3>
-              <h3>gggg</h3>
+              <h3><%= new Date(JSON.parse(guild.ws.response).joinedTimestamp).toUTCString() %></h3>
             </div>
           </div>
         </div>

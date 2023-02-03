@@ -2,15 +2,8 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  height: 92.5vh;
+  height: auto;
 
-  .card {
-    border-radius: 0px;
-    background: transparent;
-    border: solid 2px $blue;
-    margin-top: 8px;
-    margin-bottom: 25px;
-  }
 
   .server-container {
     margin-top: 25px;
@@ -26,6 +19,10 @@
       h1 {
         color: $blue;
       }
+    }
+    .card-img-top {
+      width: 40%;
+      border-radius: 100%;
     }
   }
 }
