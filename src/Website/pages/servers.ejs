@@ -29,19 +29,20 @@
           <!--<div class="section-title2">
             <h1>Servers <span style="color:#fff"><%= user.guilds.length %></span></h1>
           </div>-->
-          <div class="container">
+          <div class="container padding-add">
             <div class="row">
               <% user.guilds.forEach(async(guild)=> {
                 if (calculatePermissions(guild.permissions).includes('ADMINISTRATOR' || 'MANAGE_GUILD')) { 
                   %>
                 <div class="col-lg-3">
-                  <a href="javascript:void"><img class="card-img-top"
-                      src="<%= discordImageURL('icons', guild.id, guild.icon) %>" alt="No Guild Icon"></a>
+                  <a href="javascript:void">
+                    <img class="card-img-top" src="<%= discordImageURL('icons', guild.id, guild.icon) %>" alt="No Guild Icon Found">
+                  </a>
                   <div class="card-body">
                     <div class="server-name" style="font-size: 20px; font-weight: 600;">
                       <%= guild.name %>
                     </div>
-                      <a href="/dashboard/<%= guild.id %>/information" class="btn btn-primary">Edit <%= guild.name %></a>
+                      <a href="/dashboard/<%= guild.id %>/information" class="btn btn-primary change-class">Edit <%= guild.name %></a>
                   </div>
                 </div>
                 <% } }); %>

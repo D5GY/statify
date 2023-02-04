@@ -4,12 +4,30 @@
   overflow: hidden;
   height: auto;
 
+  .section-title {
+    .user-details {
+      justify-content: space-between;
+      .user-username {
+        margin-left: 10px;
+      }
+    }
+  }
 
   .server-container {
     margin-top: 25px;
     border-radius: 2px;
     background: transparent;
     border: solid 2px $blue;
+
+    .padding-add {
+      padding: 45px;
+
+      .change-class {
+        margin-top: 10px;
+        margin-bottom: 35px;
+        width: 100%;
+      }
+    }
 
     .section-title2 {
       margin-left: 25px;
