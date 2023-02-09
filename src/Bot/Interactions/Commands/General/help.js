@@ -1,25 +1,10 @@
 const { SlashCommandBuilder, CommandInteraction, ActionRowBuilder, StringSelectMenuBuilder } = require("discord.js");
 const statify = require('../../../Core/statify');
-const helpMenu = new ActionRowBuilder().addComponents(
-  new StringSelectMenuBuilder()
-    .setCustomId('commandUsage')
-    .setMinValues(1)
-    .setMaxValues(1)
-    .setOptions([
-      { label: 'Rainbow Six Siege', description: 'Shows how to use the Rainbow Six Siege command', value: 'r6s' },
-      { label: 'The Divison 2', description: 'Shows how to use the The Division 2 command', value: 'td2' },
-      { label: 'Splitgate', description: 'Shows how to use the Splitgate command', value: 'spg' },
-      { label: 'Apex Legends', description: 'Shows how to use the Apex Legends command', value: 'apl' },
-      { label: 'Csgo', description: 'Shows how to use the CSGO command', value: 'csg' },
-      { label: 'Minecraft', description: 'Shows how to use the Minecraft command', value: 'mnc' },
-      { label: 'Fortnite', description: 'Shows how to use the Fortnite command', value: 'frn' }
-    ])
-);
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('help')
-    .setDescription('Shows how to use statify commands'),
+    .setDescription('Redirects to the statify features/commands page on the statify website.'),
   /**
    * @param { CommandInteraction } interaction 
    * @param { statify } statify 
@@ -29,8 +14,7 @@ module.exports = {
       ephemeral: true
     });
     await interaction.editReply({
-      components: [helpMenu],
-      embeds: []
+      content: statify.response.content.HELP_COMMAND
     });
   }
-}
+};
