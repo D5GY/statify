@@ -5,6 +5,7 @@ const { isAuthenticated } = require('../../Auth/Auth');
 
 router.get('/dashboard/:id/information', isAuthenticated, async (req, res) => {
   const server = req.params.id;
+  if (typeof req.user.guilds.find(({ id }) => id === server) == 'undefined') return res.redirect('/dashboard');
   const data = await requestApiGet('guild/ws/get', { discordID: server });
   const parseData = JSON.parse(JSON.stringify(data));
   const data2 = await requestApiGet('guild/get', { discordID: server });
