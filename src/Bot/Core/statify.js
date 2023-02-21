@@ -19,9 +19,9 @@ class statify extends Client {
 
     this.Colors = {
       BLUE: "#417bd2",
-      RED: "f8002e",
-      YELLOW: "faff14",
-      GREEN: "00f821"
+      RED: "#f8002e",
+      YELLOW: "#faff14",
+      GREEN: "#00f821"
     }
     this.Emojis = {
       ICON_BLUE: '<:statify_logo_icon:1046841072824881193>',
