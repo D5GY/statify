@@ -45,13 +45,10 @@ module.exports = {
     const username = interaction.options.getString('username');
     const platform = interaction.options.getString('platform');
     const generalData = await r6.general(platform, username);
-    const rankedData = await r6.rank(platform, username);
+
 
     if (!generalData || generalData == 'TIME_OUT') return await interaction.editReply({
       content: `${statify.Emojis.ICON_YELLOW} unable to find General stats for ${username} on ${platform}.`
-    });
-    if (!rankedData || rankedData == 'TIME_OUT') return await interaction.editReply({
-      content: `${statify.Emojis.ICON_YELLOW} unable to find Ranked stats for ${username} on ${platform}.`
     });
 
     await interaction.editReply({
@@ -70,10 +67,22 @@ module.exports = {
         });
       } else if (i.customId == 'r6_page2') {
         await i.deferUpdate();
-        await i.editReply({
-          embeds: [statify.response.embed.rainbow_six_siege_ranked(rankedData, statify)],
-          components: [buttons]
-        });
+        try {
+          const rankedData = await r6.rank(platform, username);
+          if (!rankedData || rankedData == 'TIME_OUT') return await interaction.editReply({
+            content: `${statify.Emojis.ICON_YELLOW} unable to find Ranked stats for ${username} on ${platform}.`
+          });
+          await i.editReply({
+            embeds: [statify.response.embed.rainbow_six_siege_ranked(rankedData, statify)],
+            components: [buttons]
+          });
+        } catch (error) {
+          await i.editReply({
+            components: [buttons],
+            embeds: [],
+            content: `${statify.Emojis.ICON_YELLOW} unable to find Ranked stats for ${username} on ${platform}.`
+          });
+        }
       } else {
         await i.deferUpdate();
         await i.editReply({
